@@ -1,2 +1,2 @@
 # opencmas
-Software to monitor, configure and to control linux server
+Software to monitor, configure and control linux servers
