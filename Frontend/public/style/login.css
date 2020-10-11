@@ -1,0 +1,177 @@
+body {
+    background: #5f6266 ;
+    font-family: sans-serif;
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #B7B9BC ;
+    opacity: 1; /* Firefox */
+  }
+
+.logo{
+    margin-top: 15%;
+    margin-left: 25%;
+}
+
+.textbox{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid;
+    border-color: turquoise;
+  }
+
+  .login-box{
+    width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    margin-top: 10%;
+}
+  
+  .textbox input{
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80%;
+    float: left;
+    margin: 0 10px;
+  }
+
+  .button-login{
+    margin-top: 15%;
+    width: 300px;
+    height: 40px;
+    border-radius: 25px;
+    font-size: 20px;
+    background-color: #109D91;
+    border-color: transparent;
+    color: white;
+} 
+
+
+@media screen and (min-width: 768px) {
+
+    .logo{
+        margin-top: 15%;
+        margin-left: 30%;
+    }
+
+    .logo-icon{
+        width: 300px;
+    }
+
+    .textbox{
+        width: 100%;
+        overflow: hidden;
+        font-size: 50px;
+        padding: 8px 0;
+        margin: 8px 0;
+        border-bottom: 1px solid;
+        border-color: turquoise;
+      }
+    
+      .login-box{
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: white;
+        margin-top: 10%;
+    }
+      
+      .textbox input{
+        border: none;
+        outline: none;
+        background: none;
+        color: white;
+        font-size: 28px;
+        width: 80%;
+        float: left;
+        margin: 0 10px;
+      }
+
+    .button-login{
+        margin-top: 15%;
+        width: 300px;
+        height: 60px;
+        border-radius: 25px;
+        font-size: 25px;
+        background-color: #109D91;
+        border-color: transparent;
+        color: white;
+    } 
+
+}
+
+@media screen and (min-width: 1000px) {
+
+    .logo{
+        margin-top: 10%;
+        margin-left: 35%;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+    .logo{
+        margin-top: 7%;
+        margin-left: 43%;
+    }
+
+
+    .textbox{
+        width: 100%;
+        overflow: hidden;
+        font-size: 50px;
+        padding: 8px 0;
+        margin: 8px 0;
+        border-bottom: 1px solid;
+        border-color: turquoise;
+      }
+    
+      .login-box{
+        width: 280px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        color: white;
+        margin-top: 5%;
+    }
+      
+      .textbox input{
+        border: none;
+        outline: none;
+        background: none;
+        color: white;
+        font-size: 28px;
+        width: 80%;
+        float: left;
+        margin: 0 10px;
+      }
+
+    .button-login{
+        margin-top: 15%;
+        width: 300px;
+        height: 60px;
+        border-radius: 25px;
+        font-size: 25px;
+        background-color: #109D91;
+        border-color: transparent;
+        color: white;
+    } 
+
+    .password-wrong{
+      margin-top: 15%;
+      margin-left: 45%;
+    }
+
+}
