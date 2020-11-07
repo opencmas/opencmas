@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "mongoose": "^5.10.13",
     "node-ssh": "^11.1.1",
     "popups": "^1.1.3",
     "ssh2": "^0.8.9"
