@@ -8,6 +8,7 @@ const login = require('./routes/login');
 
 const get_server_information = require("../Frontend/routes/get_server_information");
 const get_server_information_history = require("../Frontend/routes/get_server_information_history");
+const get_static_information = require("../Frontend/routes/get_static_information");
 
 const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
 
@@ -33,6 +34,7 @@ app.get('/dashboard', function(req, res){
 
 app.use("/get_server_information", get_server_information);
 app.use("/get_server_information_history", get_server_information_history);
+app.use("/get_static_information", get_static_information);
 
 
 app.use((req, res, next) => {

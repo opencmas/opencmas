@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/:date").get(function (req, res) {
     const date = req.params.date;
-    console.log("uijhasgdfkujzhsdgf");
+    console.log("Requested date: " + date);
     Server_information_history.find({date: date}, function (err, result) {
         if (err) {
             res.send(err);
@@ -16,7 +16,7 @@ router.route("/:date").get(function (req, res) {
 });
 
 router.route("/").get(function (req, res) {
-
+    console.log("No date requested");
     Server_information_history.find({}, function (err, result) {
         if (err) {
             res.send(err);

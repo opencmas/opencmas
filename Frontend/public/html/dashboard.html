@@ -22,7 +22,7 @@
 
 </head>
 
-<body onload="websiteLoaded()">
+<body onload="websiteLoaded();">
    
 
     <div class="navbar">
@@ -167,14 +167,14 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Goben</td>
+                                    <td>Prozess 1</td>
                                     <td>10%</td>
                                     <td>60%</td>
                                     <td>30%</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Robl</td>
+                                    <td>Prozess 2</td>
                                     <td>60%</td>
                                     <td>20%</td>
                                     <td>30%</td>
@@ -191,7 +191,7 @@
             <div class="col-12 col-m-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                       <input id="date-picker-cpu_ram" type="date" class="date-picker" value="2018-07-22">
+                       <input id="date-picker-cpu_ram" type="date" class="date-picker" value="2018-07-22"  oninput="date_cpu_ram_changed();">
                         <h3>
                             Chart CPU - RAM
                         </h3>
@@ -208,7 +208,7 @@
             <div class="col-12 col-m-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                       <input id="date-picker-drive_network" type="date" class="date-picker" value="2018-07-22">
+                       <input id="date-picker-drive_network" type="date" class="date-picker" value="2018-07-22" oninput="date_drive_network_changed();">
                         <h3>
                             Chart Disk - Network
                         </h3>

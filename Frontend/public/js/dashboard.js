@@ -8,13 +8,37 @@ const themeDark = 'dark'
 const themeLight = 'light'
 
 const body = document.getElementsByTagName('body')[0]
+var datepicker_changed = 0;
+var datepicker_cpu_ram_changed = 1;
+var datepicker_drive_network_changed = 2;
 
 
 function websiteLoaded() {
+    get_first_use();
     get_server_information_history();
     get_server_information();
 }
 
+function get_first_use(){
+    var request = new XMLHttpRequest()
+    request.open('GET', 'http://localhost:3000/get_static_information', true)
+    request.onload = function () {
+		var data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {			
+                     
+            var rawdate = data[0].firstUse;
+            var date = rawdate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
+//console.log(date[0]);
+            document.getElementById("date-picker-cpu_ram").min = date[0];
+            document.getElementById("date-picker-drive_network").min = date[0];
+            
+        } else {
+            console.log('error')
+       	  }
+    }
+    request.send();
+}
 
 function loadChart_for_CPU_RAM(server_information_history_data) {
 
@@ -154,7 +178,6 @@ function loadChart_for_Drive_Network (server_information_history_data) {
 
 }
 
-
 function get_server_information() {
 
     var request = new XMLHttpRequest()
@@ -192,13 +215,72 @@ function get_server_information() {
 
     setTimeout(get_server_information, 1000);
 }
+  
+function date_cpu_ram_changed(){
 
-   
+    datepicker_changed = datepicker_cpu_ram_changed;
+    get_server_information_history();
+}
+
+function date_drive_network_changed(){
+
+    datepicker_changed = datepicker_drive_network_changed;
+    get_server_information_history();
+}
 
 function get_server_information_history() {
+
+    var date = "a";
+
+    if(datepicker_changed == 0)
+    {
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1;
+        var year = today.getFullYear(); 
+
+        if(day < 10)
+            day = "0" + day.toString();
+
+        if(month < 10)
+            month = "0" + month.toString();
+
+        var today = year.toString() + "-" + month.toString() + "-" + day.toString();
+
+        document.getElementById("date-picker-cpu_ram").value = today;
+        document.getElementById("date-picker-cpu_ram").max = today;
+
+        document.getElementById("date-picker-drive_network").value = today;
+        document.getElementById("date-picker-drive_network").max = today;
+
+        date = year.toString() + "-" + month.toString() + "-" + day.toString(); 
+
+    }
+    else if(datepicker_changed == datepicker_cpu_ram_changed)
+    {
+       var insertedDate = document.getElementById("date-picker-cpu_ram").value;
+
+       document.getElementById("date-picker-drive_network").value = insertedDate;
+
+       date = insertedDate;
+
+       console.log(date);
+
+    }
+    else if(datepicker_changed == datepicker_drive_network_changed)
+    {
+       var insertedDate = document.getElementById("date-picker-drive_network").value;
+
+       document.getElementById("date-picker-cpu_ram").value = insertedDate;
+
+       date = insertedDate;
+
+       console.log(date);
+    }
+
     var request = new XMLHttpRequest()
 	var server_information_history_data = [23];
-    request.open('GET', 'http://localhost:3000/get_server_information_history', true)
+    request.open('GET', 'http://localhost:3000/get_server_information_history/' + date, true)
     request.onload = function () {
 
 		var data = JSON.parse(this.response)
@@ -209,15 +291,13 @@ function get_server_information_history() {
             for (i = 0; i < data.length; i++) {
 				
                 var date = data[i].date;
+                var hour = data[i].hour;
                 var cpu = data[i].cpu;
                 var ram = data[i].ram;
                 var drive = data[i].drive;
 				var network = data[i].network;
                 
-                var str = "Visit W3Schools!"; 
-                var hour = date.match(/(?<=T)[0-9]{2}:[0-9]{2}/i);
-
-               // console.log("hour" + hour);
+                var hour = date.match(/[0-9]/i);
 				
 				server_information_history_data[i] = new server_information_history(hour, cpu, ram, drive, network);
 			
@@ -232,8 +312,6 @@ function get_server_information_history() {
 
 	request.send();
 	
-	
-
 }
 
 class server_information_history {
