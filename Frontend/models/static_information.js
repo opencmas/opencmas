@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const static_information_schema = new mongoose.Schema({
-    firstUse: String
+    firstUse: String, 
+    publicKey: String
   });
   
 

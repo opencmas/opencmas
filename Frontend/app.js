@@ -2,13 +2,16 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
 const app = express();
 
-const login = require('./routes/login');
+const get_server_information = require("./routes/get_server_information");
+const get_server_information_history = require("./routes/get_server_information_history");
+const get_static_information = require("./routes/get_static_information");
+const login = require("./routes/login");
 
-const get_server_information = require("../Frontend/routes/get_server_information");
-const get_server_information_history = require("../Frontend/routes/get_server_information_history");
-const get_static_information = require("../Frontend/routes/get_static_information");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
 
@@ -35,6 +38,7 @@ app.get('/dashboard', function(req, res){
 app.use("/get_server_information", get_server_information);
 app.use("/get_server_information_history", get_server_information_history);
 app.use("/get_static_information", get_static_information);
+app.use("/login", login);
 
 
 app.use((req, res, next) => {
@@ -42,7 +46,7 @@ app.use((req, res, next) => {
     res.header('*');
 
     if(req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'GET');
+        res.header('Access-Control-Allow-Methods', 'GET', 'POST');
         return res.status(200).json({});
     }
     next();

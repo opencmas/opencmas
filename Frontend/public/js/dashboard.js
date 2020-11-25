@@ -3,15 +3,12 @@ const warningColor = '#f0932b'
 const successColor = '#6ab04c'
 const dangerColor = '#eb4d4b'
 
-const themeCookieName = 'theme'
-const themeDark = 'dark'
-const themeLight = 'light'
-
 const body = document.getElementsByTagName('body')[0]
 var datepicker_changed = 0;
 var datepicker_cpu_ram_changed = 1;
 var datepicker_drive_network_changed = 2;
 
+const server = "http://" + location.host;
 
 function websiteLoaded() {
     get_first_use();
@@ -21,7 +18,7 @@ function websiteLoaded() {
 
 function get_first_use(){
     var request = new XMLHttpRequest()
-    request.open('GET', 'http://localhost:3000/get_static_information', true)
+    request.open('GET', server + '/get_static_information', true)
     request.onload = function () {
 		var data = JSON.parse(this.response)
 
@@ -29,7 +26,7 @@ function get_first_use(){
                      
             var rawdate = data[0].firstUse;
             var date = rawdate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
-//console.log(date[0]);
+            //console.log(date[0]);
             document.getElementById("date-picker-cpu_ram").min = date[0];
             document.getElementById("date-picker-drive_network").min = date[0];
             
@@ -65,7 +62,9 @@ function loadChart_for_CPU_RAM(server_information_history_data) {
         var hour = server_data.hour;
         hour_data[i] = hour;
 		cpu_data[i] = cpu;
-		ram_data[i] = ram;
+        ram_data[i] = ram;
+        
+     //   console.log(hour);
 			
 	}
 
@@ -193,6 +192,7 @@ function get_server_information() {
             var ram = data[0].ram;
             var drive = data[0].drive;
             var network = data[0].network;
+            
 
             document.getElementById("display_cpu").innerHTML = cpu + "%";
             document.getElementById("display_ram").innerHTML = ram + "%";
@@ -277,10 +277,11 @@ function get_server_information_history() {
 
        console.log(date);
     }
+ 
 
     var request = new XMLHttpRequest()
 	var server_information_history_data = [23];
-    request.open('GET', 'http://localhost:3000/get_server_information_history/' + date, true)
+    request.open('GET', server + '/get_server_information_history/' + date, true)
     request.onload = function () {
 
 		var data = JSON.parse(this.response)
@@ -291,13 +292,17 @@ function get_server_information_history() {
             for (i = 0; i < data.length; i++) {
 				
                 var date = data[i].date;
-                var hour = data[i].hour;
+                var hourRaw = data[i].hour;
                 var cpu = data[i].cpu;
                 var ram = data[i].ram;
                 var drive = data[i].drive;
 				var network = data[i].network;
                 
-                var hour = date.match(/[0-9]/i);
+               // console.log(data);
+
+               var hour = hourRaw.match(/[0-9]{2}:[0-9]{2}/i);
+
+                console.log(hour);
 				
 				server_information_history_data[i] = new server_information_history(hour, cpu, ram, drive, network);
 			
