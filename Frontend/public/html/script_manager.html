@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" version="5">
+
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="public/style/script_manager.css">
+
+    <link rel="shortcut icon" type="image/jpg" href="public/media/icons/favicon.ico" />
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/ca74b325e3.js" crossorigin="anonymous"></script>
+
+    <script src="public/js/script_manager.js"></script>
+
+    <title>Script Manager - OpenCMAS</title>
+
+</head>
+
+<body onload="get_scripts();">
+    <div class="navbar">
+        <!-- begin navigation left -->
+        <ul class="navbar-navigation">
+            <li>
+                <!-- dasboard icon-->
+                <a class="navigation-link">
+                    <i class="fas fa-bars"></i> 
+                </a>
+            </li>
+            <li class="navigation-item avt-wrapper"> 
+                <!-- logo-->
+                <img src="public/media/icons/dashboard-logo.png" class="logo">
+            </li>
+        </ul>
+        <!-- end navigation left -->
+        <!-- form -->
+
+        <h2 class="navbar-search">OpenCMAS - Script Manager</h2>
+
+        <!-- end form -->
+        <!-- begin nav right -->
+        <ul class="navbar-navigation navigation-right">
+            <!-- logout icon -->
+            <li>
+                <img src="public/media/icons/logout.png" class="logout-icon">
+            </li>
+        </ul>
+        <!-- end nav right -->
+    </div>
+
+    <!-- begin sidebar navigation-->
+    <div class="sidebar">
+        <ul class="sidebar-navigation">
+            <!-- Overview-->
+            <li class="sidebar-navigation-item">
+                <a href="#" class="sidebar-navigation-link">
+                    <!-- Overview Icon-->
+                    <div>
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            </li>
+            <!-- Scripts-->
+            <li class="sidebar-navigation-item">
+                <a href="#" class="sidebar-navigation-link">
+                    <!-- Script Icon-->
+                    <div>
+                        <i class="fa fa-file-code-o" aria-hidden="true"></i>
+                    </div>
+                    <span>Scripts</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- end sidebar navigation-->
+
+    <!-- main content -->
+
+    <div class="wrapper">
+        <div class="row process-card">
+            <div class="col-8 col-m-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            Add Scripts
+                        </h3>
+                        <input id="input_scriptname" type="text" class="form-control" placeholder="Scriptname">
+                        <input id="input_scriptdescription" type="text" class="form-control" placeholder="Scriptdescription">
+                        <input id="uploadScript" type="file" >
+                        <input id="submitScript" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row chart-card">
+            <div class="col-12 col-m-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            Script Overview
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="script_content" class="row">
+                            <div class="script_item col-4 col-m-4 col-sm-4">
+                                <img class="script_item_icon" src="public/media/icons/script_icon.png">
+                                <div class="script_item_box">
+                                    <h5 class="script_item_title">OpenCMAS</h5>
+                                    <h6 class="script_item_description">Beispielbeschreibung für Script</h6> 
+                                    <div>
+                                        <button class="script_item_button_install" >Install</button>
+                                        <button class="script_item_button_remove">Remove</button>
+                                    </div>
+                                   
+                                </div>                      
+                            </div>
+                            <div class="script_item col-4 col-m-4 col-sm-4">
+                                <img class="script_item_icon" src="public/media/icons/script_icon.png">
+                                <div class="script_item_box">
+                                    <h5 class="script_item_title">OpenCMAS</h5>
+                                    <h6 class="script_item_description">Beispielbeschreibung für Script</h6> 
+                                    <div>
+                                        <button class="script_item_button_install" >Install</button>
+                                        <button class="script_item_button_remove">Remove</button>
+                                    </div>
+                                   
+                                </div>                      
+                            </div>
+                            <div class="script_item col-4 col-m-4 col-sm-4">
+                                <img class="script_item_icon" src="public/media/icons/script_icon.png">
+                                <div class="script_item_box">
+                                    <h5 class="script_item_title">OpenCMAS</h5>
+                                    <h6 class="script_item_description">Beispielbeschreibung für Script</h6> 
+                                    <div>
+                                        <button class="script_item_button_install" >Install</button>
+                                        <button class="script_item_button_remove">Remove</button>
+                                    </div>                            
+                                </div>                      
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

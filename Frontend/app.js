@@ -9,6 +9,7 @@ const get_server_information = require("./routes/get_server_information");
 const get_server_information_history = require("./routes/get_server_information_history");
 const get_static_information = require("./routes/get_static_information");
 const login = require("./routes/login");
+const get_scripts = require("./routes/get_scripts");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,10 +36,16 @@ app.get('/dashboard', function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/dashboard.html'))
 });
 
+app.get('/script_manager', function(req, res){
+    res.sendFile(path.join(__dirname,'/public/html/script_manager.html'))
+});
+
+
 app.use("/get_server_information", get_server_information);
 app.use("/get_server_information_history", get_server_information_history);
 app.use("/get_static_information", get_static_information);
 app.use("/login", login);
+app.use("/get_scripts", get_scripts);
 
 
 app.use((req, res, next) => {

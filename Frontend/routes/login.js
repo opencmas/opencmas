@@ -3,9 +3,9 @@ const http = require('http');
 const path = require('path');
 const { env } = require('process');
 const Client = require('ssh2').Client;
-const NodeRSA = require("node-rsa");
 const { create } = require('domain');
 const JSEncrypt = require('node-jsencrypt');  
+
 
 const router = express.Router();
 
@@ -81,11 +81,15 @@ router.post('/', (req, res, next) => {
                 {
                 console.log('Stream :: close');
                 
-                }).on('data', function(data) {
+                }).on('data', function(data) 
+                {
                 console.log('OUTPUT: ' + data);
+                
                 });
                 stream.end('ls -l\nexit\n');
                 return res.status(200).json({authentication: "Successfully"});
+
+
             });
             }).on('error', function(err){
                 console.error('Authentication failed');                         //Wrong Username/Password

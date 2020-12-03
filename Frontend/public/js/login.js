@@ -43,8 +43,11 @@ function login(){
 
             if(status == "Failed")
                 document.getElementById("login-failed").style.visibility = "visible";
-            else
+            else{
                 document.getElementById("login-failed").style.visibility = "collapse";
+                window.location.replace(server + "/dashboard");
+            }
+                
 
         }
     }
