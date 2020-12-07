@@ -10,6 +10,7 @@ const get_server_information_history = require("./routes/get_server_information_
 const get_static_information = require("./routes/get_static_information");
 const login = require("./routes/login");
 const get_scripts = require("./routes/get_scripts");
+const post_script = require("./routes/post_script");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -46,6 +47,7 @@ app.use("/get_server_information_history", get_server_information_history);
 app.use("/get_static_information", get_static_information);
 app.use("/login", login);
 app.use("/get_scripts", get_scripts);
+app.use("/post_script", post_script);
 
 
 app.use((req, res, next) => {

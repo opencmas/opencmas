@@ -334,9 +334,10 @@ table th {
 }
 
 #submitScript{
-  background-color: grey;
+  background-color: rgb(89, 188, 201);
   border-color: transparent;
   border-radius: 5px;
+  margin-left: 50px;
 }
 
 .script_item{

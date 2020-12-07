@@ -27,36 +27,12 @@ const privateKey =
 "MTHy/xWaaqYPIZAqTQp+opACGFs+j5QShfyncsGDQ33A\n" +
 "-----END RSA PRIVATE KEY-----";
 
-const privKey = "-----BEGIN RSA PRIVATE KEY----- MIICXQIBAAKBgQChhYOMHPLUh/bkL36vPLxeJqLjxZgzAtluQYXN4g96zu07bVpi zfEGLmpEX3YeW4eyVl4pGVGU2zFB6Y3dG4gZj67VjuWOakVRP4i/ACMsmmMVTnnY I8/CEJRCnsiAgdagEYB4pFOAccXJYZnYJRSJ8W1PUqvph53OCBNXw87QGwIDAQAB AoGBAIRKo1Sl/SmfdtKsJ9mFKE8A3BcsJp1ZLxbD6cCX78/JHbq3tPkJ7ef/KiB4 A3mXxAuH+7UzvILsCGsQzJWVUCE6Br53mvUGxCU20e572J4xk9ifMxZGWWk58FHK ALXVGjkpJ4e+9cnpI6VlabaPmDo6oR7vvTnc/giFM1Le49W5AkEA1H0XIa7dJ2OR 1KtzUuo8boprB4YgdI8v02Ol21ZsGtOA9O4Ngo8NkHuTrVGfP4Wum1HgGKhKTYaO sXb4hn8zlQJBAMKYqsVS54b9rTkMef34bJExb0CiVlULA68WQjjeDUwNHxYBkk8h TpiFwtYMSrB7Wyh/Ooz7/P/NIqP5T3dtCO8CQDFlXvI6lzin4efBb46v2xqLXPQj zvmpq6GFgbHqdjkKP+kwSb23CZ0zzRG2bsGyjvOWZfT1ckhxZkyE7qM9gL0CQQC5 NeUTehyy9q7wJVfWyaNLbemdcuUIfDs9YcoVpgKx56s2nrhKaEEOGgGfCIPuBPp2 SOHJXe0m6m+V8awY1sYxAkAyoroqv0DPY3ly9JEolKI0C6LiB2QCr9rW04rJbPVT 1u4BQuYCi/qrfQdcCUOIQXCLM6t/LhEtZcjuYxdNkQh7 -----END RSA PRIVATE KEY-----";
-
-function decryptMessage(username){
-
-    let key_private = new NodeRSA(privKey);
-
-    var decrypt = key_private.decrypt(username, 'utf8');
-    console.log(decrypt);
-}
-
-function createKeys(){
-
-    const key = new NodeRSA({b: 1024});
-    key.setOptions({encryptionScheme: 'pkcs1_oaep'});
-
-    var publicKey = key.exportKey('public');
-    var privateKey = key.exportKey('private');
-
-    console.log(publicKey);
-    console.log(privateKey);
-
-}
 
 router.post('/', (req, res, next) => {
 
     var username = req.body.username;
     var password = req.body.password;
    
-    var key = new NodeRSA(privateKey);
-
     const crypt = new JSEncrypt();
     crypt.setPrivateKey(privateKey);
     var usernameDecrypted = crypt.decrypt(username);

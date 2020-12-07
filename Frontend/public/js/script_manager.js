@@ -1,18 +1,6 @@
 const server = "http://" + location.host;
 const scripts = [];
-function getScripts(){
-    var request = new XMLHttpRequest()
-    request.open('GET', server + '/get_scripts', true)
-    request.onload = function () {
-		var data = JSON.parse(this.response);
-        if (request.status >= 200 && request.status < 400) {			
-            public_Key = data[0].publicKey;
-        } else {
-            console.log('error')
-       	}
-    }
-    request.send();
-}
+
 
 function get_scripts() {
 
@@ -24,6 +12,12 @@ function get_scripts() {
         var data = JSON.parse(this.response)
 
         if (request.status >= 200 && request.status < 400) {
+
+            var root_div = document.getElementById("script_content");
+            while(root_div.firstChild){
+                root_div.removeChild(root_div.firstChild);
+            }
+
 
             data.forEach(element => {
         
@@ -38,8 +32,6 @@ function get_scripts() {
                 scripts.push(script_object);
 
                 console.log(scripts);
-
-                var root_div = document.getElementById("script_content");
 
                 var script_item_div = document.createElement("div");
                 script_item_div.className = "script_item col-4 col-m-4 col-sm-4";
@@ -89,6 +81,56 @@ function get_scripts() {
 
     request.send()
 
+}
+
+function save_button(){
+
+   var input = confirm("Are you sure?");
+
+   var scriptname = document.getElementById("input_scriptname");
+   var scriptdescription = document.getElementById("input_scriptdescription");
+
+    if(scriptname.value != "" && scriptdescription.value != "")
+    {
+        var script_data = {
+            "script_name": scriptname.value,
+            "script_description": scriptdescription.value,
+            "icon_path": ""
+        }
+
+        console.log(script_data);
+
+        if(input == true){
+        
+            var request = new XMLHttpRequest()
+            request.open('POST', server + '/post_script', true)
+            request.setRequestHeader("Content-type", "application/json");
+            request.onload = function () {
+            var data = JSON.parse(this.response);
+                if (request.status >= 200 && request.status < 400) {	
+                    var status = data.script_inserted;
+                    console.log(status)
+        
+                    if(status == "Successfull")
+                    {
+                        alert("Script successfully uploaded");
+                        scriptname.value = "";
+                        scriptdescription.value = "";
+                        get_scripts();
+                    }
+                    else{
+                        alert("Something went wrong please try again");
+                    }
+                }
+            }
+
+            request.send(JSON.stringify(script_data));
+
+        }
+    }
+    else{
+        alert("Please insert Scriptname and Scriptdescription");
+    }
 }
 
 class script {
