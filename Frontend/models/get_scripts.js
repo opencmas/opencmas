@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const get_scripts_schema = new mongoose.Schema({
     _id: mongoose.ObjectId,
     name: String,
-    description: String
+    description: String,
+    script_file: String,
+    script_icon: String
   });
   
 

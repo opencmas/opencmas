@@ -12,7 +12,8 @@ const login = require("./routes/login");
 const get_scripts = require("./routes/get_scripts");
 const post_script = require("./routes/post_script");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.urlencoded({ extended: false   }));
 app.use(bodyParser.json());
 
 const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
@@ -28,6 +29,7 @@ mongoose.connection.on("open", function() {
 })
 
 app.use('/public', express.static('public'));
+app.use('/uploads', express.static('uploads'));
 
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/login.html'))

@@ -18,7 +18,6 @@ function get_scripts() {
                 root_div.removeChild(root_div.firstChild);
             }
 
-
             data.forEach(element => {
         
                 var script_id = element.id;
