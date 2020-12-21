@@ -1,0 +1,14 @@
+id=$(id -G | egrep -i '^([0])$')
+if [ -z "$id" ]
+then
+#!/bin/bash
+
+
+
+sudo cp /etc/ssh/sshd_config ./sshd_config_bak
+
+
+
+
+exit 0
+
