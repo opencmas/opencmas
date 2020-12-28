@@ -16,6 +16,7 @@
     "multer": "^1.4.2",
     "node-jsencrypt": "^1.0.0",
     "node-ssh": "^11.1.1",
+    "nodemon": "^2.0.6",
     "ssh2": "^0.8.9"
   },
   "devDependencies": {

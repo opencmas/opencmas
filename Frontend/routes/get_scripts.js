@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const Get_scripts = require("../models/get_scripts");
+const Get_scripts = require("../models/script_model");
 const router = express.Router();
 
 router.route("/").get(function (req, res) {

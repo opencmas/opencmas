@@ -20,14 +20,15 @@ function get_scripts() {
 
             data.forEach(element => {
         
-                var script_id = element.id;
+                var script_id = element._id;
                 var script_title = element.name;
                 var script_description = element.description;
-                // var script_icon = element.path;
-                var script_icon = "public/media/icons/script_icon.png";
+                var script_icon = 'uploads/icons/' + element.script_icon;
+                //var script_icon = "public/media/icons/script_icon.png";
 
                 var script_object = new script(script_id, script_title, script_description, script_icon);
 
+               // console.log(element)
                 scripts.push(script_object);
 
                 console.log(scripts);
@@ -88,6 +89,9 @@ function save_button(){
 
    var scriptname = document.getElementById("input_scriptname");
    var scriptdescription = document.getElementById("input_scriptdescription");
+   var script_file = document.getElementById("uploadScript").files[0];
+   var script_icon = document.getElementById("uploadIcon").files[0];
+
 
     if(scriptname.value != "" && scriptdescription.value != "")
     {
@@ -101,30 +105,24 @@ function save_button(){
 
         if(input == true){
         
-            var request = new XMLHttpRequest()
-            request.open('POST', server + '/post_script', true)
-            request.setRequestHeader("Content-type", "application/json");
-            request.onload = function () {
-            var data = JSON.parse(this.response);
-                if (request.status >= 200 && request.status < 400) {	
-                    var status = data.script_inserted;
-                    console.log(status)
-        
-                    if(status == "Successfull")
-                    {
-                        alert("Script successfully uploaded");
-                        scriptname.value = "";
-                        scriptdescription.value = "";
-                        get_scripts();
-                    }
-                    else{
-                        alert("Something went wrong please try again");
-                    }
-                }
-            }
-
-            request.send(JSON.stringify(script_data));
-
+            var data = new FormData();
+            data.append("script_name", scriptname.value);
+            data.append("script_description", scriptdescription.value,);
+            data.append("script_file", script_file);
+            data.append("icon_path", script_icon);
+             
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            
+            xhr.addEventListener("readystatechange", function() {
+              if(this.readyState === 4) {
+                console.log(this.responseText);
+              }
+            });
+            
+            xhr.open("POST", "localhost:3000/post_script");
+            
+            xhr.send(data);
         }
     }
     else{
