@@ -93,6 +93,8 @@ function save_button(){
    var script_icon = document.getElementById("uploadIcon").files[0];
 
 
+    console.log(script_icon);
+
     if(scriptname.value != "" && scriptdescription.value != "")
     {
         var script_data = {
@@ -112,14 +114,7 @@ function save_button(){
             data.append("icon_path", script_icon);
              
             var xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
-            
-            xhr.addEventListener("readystatechange", function() {
-              if(this.readyState === 4) {
-                console.log(this.responseText);
-              }
-            });
-            
+                       
             xhr.open("POST", "localhost:3000/post_script");
             
             xhr.send(data);

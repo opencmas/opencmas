@@ -13,7 +13,7 @@ const get_scripts = require("./routes/get_scripts");
 const post_script = require("./routes/post_script");
 
 
-app.use(bodyParser.urlencoded({ extended: false   }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
@@ -43,6 +43,10 @@ app.get('/script_manager', function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/script_manager.html'))
 });
 
+app.get('/site_not_found', function(req, res){
+    res.sendFile(path.join(__dirname,'/public/html/site_not_found.html'))
+});
+
 
 app.use("/get_server_information", get_server_information);
 app.use("/get_server_information_history", get_server_information_history);
@@ -66,9 +70,7 @@ app.use((req, res, next) => {
 app.use('/login', login);
  
 app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-    next(error);
+    res.sendFile(path.join(__dirname,'/public/html/site_not_found.html'))
 });
 
 app.use((error, req, res, next) => {

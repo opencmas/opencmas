@@ -33,7 +33,6 @@ var storage = multer.diskStorage({
 var upload = multer({ storage : storage });
 
 router.post("/", upload.fields([{ name: 'script_file', maxCount: 1}, { name: 'icon_path', maxCount: 1}]), function (req, res, next){
-    
   const script = new Script_Model({
       _id: id,
       name: req.body.script_name,
