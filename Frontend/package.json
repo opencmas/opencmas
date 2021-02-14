@@ -11,7 +11,9 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.13",
     "multer": "^1.4.2",
     "node-jsencrypt": "^1.0.0",

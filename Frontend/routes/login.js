@@ -5,9 +5,17 @@ const { env } = require('process');
 const Client = require('ssh2').Client;
 const { create } = require('domain');
 const JSEncrypt = require('node-jsencrypt');  
-
-
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const router = express.Router();
+
+
+  const signingOptions = {
+    keyid: 'auth-jwt',
+    algorithm: 'RS256',
+    expiresIn: '6h',
+  };
+  
 
 
 const privateKey = 
@@ -63,7 +71,18 @@ router.post('/', (req, res, next) => {
                 
                 });
                 stream.end('ls -l\nexit\n');
-                return res.status(200).json({authentication: "Successfully"});
+
+                const payload = {
+                    authentication: 'successfull',
+                  };
+                
+                  const myToken = jwt.sign(payload, privateKey, signingOptions);
+  
+                  console.log(myToken);
+
+                  res.cookie('auth-cookie', 'successfullAuthenticated', { maxAge: 900000});
+                  res.end('END');
+                //return res.status(200).json({authentication: "Successfully"});
 
 
             });
@@ -71,7 +90,7 @@ router.post('/', (req, res, next) => {
                 console.error('Authentication failed');                         //Wrong Username/Password
                 return res.send({authentication: "Failed"});
             }).connect({
-            host: env.serverIP || '192.168.1.5',                                //ServerIP Address
+            host: '192.168.1.5',                                //ServerIP Address
             port: 16500,
             username: usernameDecrypted,
             password: passwordDecrypted

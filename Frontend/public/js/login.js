@@ -8,6 +8,7 @@ function getPublicKey(){
 		var data = JSON.parse(this.response);
         if (request.status >= 200 && request.status < 400) {			
             public_Key = data[0].publicKey;
+            console.log(server);
         } else {
             console.log('error')
        	}
@@ -31,6 +32,8 @@ function login(){
         "username": encryptedUsername,
         "password": encryptedPassword
     }
+
+    console.log(data);
 
     var request = new XMLHttpRequest()
     request.open('POST', server + '/login', true)

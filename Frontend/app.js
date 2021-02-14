@@ -11,7 +11,7 @@ const get_static_information = require("./routes/get_static_information");
 const login = require("./routes/login");
 const get_scripts = require("./routes/get_scripts");
 const post_script = require("./routes/post_script");
-
+const checkauth = require('./middleware/check-auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,25 +35,25 @@ app.get('/', function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/login.html'))
 });
 
-app.get('/dashboard', function(req, res){
+app.get('/dashboard', checkauth, function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/dashboard.html'))
 });
 
-app.get('/script_manager', function(req, res){
+app.get('/script_manager', checkauth, function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/script_manager.html'))
 });
 
-app.get('/site_not_found', function(req, res){
+app.get('/site_not_found', checkauth, function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/site_not_found.html'))
 });
 
 
-app.use("/get_server_information", get_server_information);
-app.use("/get_server_information_history", get_server_information_history);
+app.use("/get_server_information", checkauth, get_server_information);
+app.use("/get_server_information_history", checkauth, get_server_information_history);
 app.use("/get_static_information", get_static_information);
 app.use("/login", login);
-app.use("/get_scripts", get_scripts);
-app.use("/post_script", post_script);
+app.use("/get_scripts", checkauth, get_scripts);
+app.use("/post_script", checkauth, post_script);
 
 
 app.use((req, res, next) => {
