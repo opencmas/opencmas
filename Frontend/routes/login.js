@@ -76,11 +76,16 @@ router.post('/', (req, res, next) => {
                     authentication: 'successfull',
                   };
                 
-                  const myToken = jwt.sign(payload, privateKey, signingOptions);
+                 // const myToken = jwt.sign(payload, privateKey, signingOptions);
+
+                 const myToken = jwt.sign(payload, 'secret', {
+                  algorithm: "HS256",
+                  expiresIn: '6h'
+              })
   
                   console.log(myToken);
 
-                  res.cookie('auth-cookie', 'successfullAuthenticated', { maxAge: 900000});
+                  res.cookie('auth-cookie', myToken, { maxAge: 900000, secure: true, domain: 'localhost'});
                   res.end('END');
                 //return res.status(200).json({authentication: "Successfully"});
 

@@ -7,7 +7,18 @@ const app = express();
 
 module.exports = (req, res, next) =>{
     try{
-        const token = req.headers.authorization;
+
+
+        var cookie = req.headers.cookie;
+        console.log("TEST:");
+        
+        cookie = cookie.replace('auth-cookie=', '')
+        console.log(cookie);
+
+        //const token = req.headers.authorization;
+
+        const token = cookie;
+
         if(!token){
             console.log("Token not provided!");
             res.sendFile(path.join(__dirname,'../public/html/login.html'));
