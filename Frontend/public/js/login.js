@@ -38,23 +38,103 @@ function login(){
     var request = new XMLHttpRequest()
     request.open('POST', server + '/login', true)
     request.setRequestHeader("Content-type", "application/json");
+    //request.withCredentials = true;
+    try{
     request.onload = function () {
-        var data = JSON.parse(this.response);
-        if (request.status >= 200 && request.status < 400) {	
-            var status = data.authentication;
-            console.log(status)
+      
+            console.log(this.response);
 
-            if(status == "Failed")
-                document.getElementById("login-failed").style.visibility = "visible";
-            else{
-                document.getElementById("login-failed").style.visibility = "collapse";
-                window.location.replace(server + "/dashboard");
+            if(this.response == 'END')
+            {
+                document.getElementById("totp-field").style.display = "block";
+                document.getElementById("login-field").style.display = "none";
             }
-                
-
+            else{
+                var data = JSON.parse(this.response);
+                if (request.status >= 200 && request.status < 400) {	
+                    var status = data.authentication;
+                    console.log(status)
+        
+                    //var x = document.cookie;
+        
+                    //console.log(x);
+        
+                    if(data.authentication == "failed"){
+                        document.getElementById("login-failed").style.visibility = "visible";
+                        console.log(document.getElementById("login-failed").style.visibility);
+                    }
+                    else{
+                        document.getElementById("login-failed").style.visibility = "collapse";
+                        window.location.replace(server + "/dashboard");
+                    }
+                        
+        
+                }
         }
+       
     }
+}
+catch(err){
+    //console.log(err);
+}
     request.send(JSON.stringify(data));
 
 
 }
+
+function submitToken(){
+
+    var totp_token = document.getElementById("input_totp_token").value;
+
+    var data = {
+        "token": totp_token
+    }
+
+    console.log(data);
+
+    var request = new XMLHttpRequest()
+    request.open('POST', server + '/totp-validate', true)
+    request.setRequestHeader("Content-type", "application/json");
+    request.onload = function () {
+
+        console.log(this.response);
+
+        if(this.response == 'END'){
+            window.location.replace("http://192.168.1.43:3000/dashboard");
+        }
+        else{        
+            var data = JSON.parse(this.response);
+            console.log(data);
+
+            if(data.authentication == "failed")
+                document.getElementById("totp-failed").style.visibility = "visible";
+            else
+                document.getElementById("totp-failed").style.visibility = "collapse";
+
+
+
+            if (request.status >= 200 && request.status < 400) {	
+                var status = data.authentication;
+                console.log(status)
+
+                if(status == "failed")
+                    document.getElementById("login-failed").style.visibility = "visible";
+
+                    
+
+
+            }
+            else{
+                console.log("failed");
+            }
+        }
+    }
+    request.send(JSON.stringify(data));
+
+}
+
+
+
+
+
+

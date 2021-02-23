@@ -1,6 +1,6 @@
 /* begin main color definition */
 :root {
-    --main-color: #909090;
+  --main-color: #909090;
   --second-color: #f5f6fa;
   --main-bg-color: #23242D;
   --second-bg-color: #181818;
@@ -129,9 +129,64 @@ body {
   background: var(--danger-color);
   border-radius: 5px;
 }
+
+.settings-icon{
+  margin-right: 20px;
+  height: 40px;
+}
+
 .logout-icon{
   height: 40px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
   
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  background-color: #3a3c4b;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  margin-left: 98%;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.settings-title{
+  text-align: center;
+  font-size: 30px;
+}
+
+.settings-subtitle{
+  float: left;
+  font-size: 20px;
+  color: #4d858f;
+  margin-bottom: 2%;
 }
 
 .sidebar {
@@ -304,4 +359,13 @@ table th {
 .date-picker{
   float: right;
   background-color: #acacac
+}
+
+#requestNewSecret{
+  
+}
+
+#token{
+  width: 20%;
+  margin-bottom: 2%;
 }

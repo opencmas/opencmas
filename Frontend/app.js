@@ -3,6 +3,8 @@ const http = require('http');
 const path = require('path');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+const Speakeasy = require("speakeasy");
+const jwt = require('jsonwebtoken');
 const app = express();
 
 const get_server_information = require("./routes/get_server_information");
@@ -12,9 +14,23 @@ const login = require("./routes/login");
 const get_scripts = require("./routes/get_scripts");
 const post_script = require("./routes/post_script");
 const checkauth = require('./middleware/check-auth');
+const checkLogin = require('./middleware/check-login');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+require("dotenv").config();
+
+const payload = {
+    authentication: 'successfull',
+    type: 'full-session'
+  };
+
+const myToken = jwt.sign(payload, 'secret', {
+    algorithm: "HS256",
+    expiresIn: '900000'
+});
+
 
 const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
 
@@ -47,6 +63,49 @@ app.get('/site_not_found', checkauth, function(req, res){
     res.sendFile(path.join(__dirname,'/public/html/site_not_found.html'))
 });
 
+app.get("/totp-generate-secret", checkauth, (request, response, next) => {
+    var secret = Speakeasy.generateSecret({ length: 10 });
+    response.send({ "secret": secret.base32 });
+});
+
+app.post("/totp-validate-dev", (req, res, next) => {
+    //console.log(req.body.token);
+    res.send({
+        "valid": Speakeasy.totp.verify({
+            secret: process.env.SECRET,
+            encoding: "base32",
+            token: req.body.token,
+            window: 0
+        })
+    });
+});
+
+app.post("/totp-validate", checkLogin, (req, res, next) => {
+    console.log(req.body);
+    console.log("TOTP");
+    const token = Speakeasy.totp.verify({
+        secret: process.env.SECRET,
+        encoding: "base32",
+        token: req.body.token,
+        window: 0
+    })
+
+
+
+    console.log(token);
+
+    if(token == true){
+        res.cookie('auth-cookie', myToken, { maxAge: 900000, domain: '192.168.1.43'});
+        res.end('END');
+    }
+    else{
+        console.log("giadsa");
+        res.send({ authentication: "failed" });
+
+    }
+
+
+});
 
 app.use("/get_server_information", checkauth, get_server_information);
 app.use("/get_server_information_history", checkauth, get_server_information_history);
@@ -66,8 +125,6 @@ app.use((req, res, next) => {
     }
     next();
 });
-
-app.use('/login', login);
  
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname,'/public/html/site_not_found.html'))

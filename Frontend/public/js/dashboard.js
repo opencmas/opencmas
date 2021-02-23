@@ -3,6 +3,7 @@ const warningColor = '#f0932b'
 const successColor = '#6ab04c'
 const dangerColor = '#eb4d4b'
 
+
 const body = document.getElementsByTagName('body')[0]
 var datepicker_changed = 0;
 var datepicker_cpu_ram_changed = 1;
@@ -318,6 +319,96 @@ function get_server_information_history() {
 	request.send();
 	
 }
+
+
+function showModal(){
+    var modal = document.getElementById("myModal");
+
+    modal.style.display = "block";
+
+    var qrc = new QRCode(document.getElementById("qrcode"), "otpauth://totp/opencmas:admin?digits=6&issuer=opencmas&period=30&secret=KY5E2NZKONJGK4JZ");
+
+}
+
+function hideModal() {
+    var modal = document.getElementById("myModal");
+
+    modal.style.display = "none";
+}
+
+function requestNewTOTPSecret(){
+
+    var request = new XMLHttpRequest()
+	var server_information_history_data = [23];
+    request.open('GET', server + '/totp-generate-secret')
+    request.onload = function () {
+
+		var data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {			
+            
+            console.log(data);
+            //var qrc = new QRCode(document.getElementById("qrcode"), "otpauth://totp/opencmas:admin?digits=6&issuer=opencmas&period=30&secret=KY5E2NZKONJGK4JZ");
+
+
+        } else {
+            console.log('error')
+       	  }
+    }
+
+    request.send();
+    
+}
+
+function checkTOTPToken(){
+    
+    var token = document.getElementById("token");
+    console.log(token.value);
+
+    var data = new FormData();
+    data.append("token", token.value);
+     
+    //console.log(data);
+
+    var xhr = new XMLHttpRequest();
+
+    // listen for `load` event
+    xhr.onload = () => {
+    
+        // print JSON response
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // parse JSON
+            const response = JSON.parse(xhr.responseText);
+            console.log(response);
+        }
+    };
+    
+    // create a JSON object
+    const json = {
+        "token": token.value
+    };
+
+    console.log(json);
+
+    xhr.open('POST', server + '/totp-validate')
+     
+    xhr.send(JSON.stringify(json));
+
+    // open request
+   // xhr.open('POST', server + '/totp-validate')
+   // xhr.send(JSON.stringify(json));
+   // xhr.send(data);
+    
+    // set `Content-Type` header
+  //  xhr.setRequestHeader('Content-Type', 'application/json');
+    
+    // send rquest with JSON payload
+   // xhr.send(JSON.stringify(json));
+   
+
+}
+
+
 
 class server_information_history {
 

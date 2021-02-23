@@ -107,6 +107,7 @@ function save_button(){
 
         if(input == true){
         
+            console.log("sending")
             var data = new FormData();
             data.append("script_name", scriptname.value);
             data.append("script_description", scriptdescription.value,);
@@ -115,7 +116,7 @@ function save_button(){
              
             var xhr = new XMLHttpRequest();
                        
-            xhr.open("POST", "localhost:3000/post_script");
+            xhr.open("POST", server + "/post_script");
             
             xhr.send(data);
         }

@@ -17,6 +17,7 @@
 
     <title>Dashboard - OpenCMAS</title>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="public/js/dashboard.js"></script>
 
@@ -48,12 +49,38 @@
         <!-- begin nav right -->
         <ul class="navbar-navigation navigation-right">
             <!-- logout icon -->
+            <li >
+                <img id="settings" src="public/media/icons/settings.png" class="settings-icon" onclick="showModal()" >
+            </li>
             <li>
                 <img src="public/media/icons/logout.png" class="logout-icon">
             </li>
         </ul>
         <!-- end nav right -->
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close" onclick="hideModal()">&times;</span>
+            <span class="settings-title">Settings</span>
+            <span class="settings-subtitle">Generate new TOTP secret</span>
+            <div id="requestNewSecret">
+                <input id="token" placeholder="Insert current TOTP Code" ></input>
+                <input type="submit" onClick="checkTOTPToken();"></input> 
+            </div>
+            <div id="confirmNewSecret">
+                <div id="qrcode"></div>
+                <input id="submit_token" placeholder="Insert current TOTP Code" ></input>
+                <input type="submit" onClick="checkTOTPToken();"></input> 
+            </div>
+
+        </div>
+    
+    </div>
+
 
     <!-- begin sidebar navigation-->
     <div class="sidebar">

@@ -10,10 +10,10 @@ module.exports = (req, res, next) =>{
 
 
         var cookie = req.headers.cookie;
-        console.log("TEST:");
+       // console.log("TEST:");
         
         cookie = cookie.replace('auth-cookie=', '')
-        console.log(cookie);
+        //  console.log(cookie);
 
         //const token = req.headers.authorization;
 
@@ -25,11 +25,18 @@ module.exports = (req, res, next) =>{
         }
         else{
             const decoded = jwt.verify(token, 'secret');
-            next();
+            //console.log(decoded.type);
+            
+            if(decoded.type == "full-session")
+                next();
+            else
+                res.sendFile(path.join(__dirname,'../public/html/login.html'));
+
+            
         }
         
     }catch(error){
-        console.log(error);
+       // console.log(error);
 
         res.sendFile(path.join(__dirname,'../public/html/login.html'))
        

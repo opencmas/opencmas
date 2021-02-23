@@ -74,26 +74,30 @@ router.post('/', (req, res, next) => {
 
                 const payload = {
                     authentication: 'successfull',
+                    type: 'login-session'
                   };
                 
                  // const myToken = jwt.sign(payload, privateKey, signingOptions);
 
                  const myToken = jwt.sign(payload, 'secret', {
                   algorithm: "HS256",
-                  expiresIn: '6h'
-              })
+                  expiresIn: '60000' })
   
                   console.log(myToken);
 
-                  res.cookie('auth-cookie', myToken, { maxAge: 900000, secure: true, domain: 'localhost'});
+                  //res.cookie('auth-cookie', myToken, { maxAge: 900000, domain: 'localhost'});
+                 
+                 
+
+                  res.cookie('auth-cookie', myToken, { maxAge: 60000, domain: '192.168.1.43', sameSite: 'lax'});
                   res.end('END');
                 //return res.status(200).json({authentication: "Successfully"});
 
 
             });
             }).on('error', function(err){
-                console.error('Authentication failed');                         //Wrong Username/Password
-                return res.send({authentication: "Failed"});
+                console.error('authentication failed');                         //Wrong Username/Password
+                return res.send({authentication: "failed"});
             }).connect({
             host: '192.168.1.5',                                //ServerIP Address
             port: 16500,
