@@ -13,3 +13,6 @@ zip
 unzip
 tar
 libc6-dev
+gnupg
+nodejs
+npm
