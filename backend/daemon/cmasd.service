@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenCMAS service 
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/home/stefan/opencmas4/opencmas/backend/daemon/main.c
+
+[Install]
+WantedBy=multi-user.target1

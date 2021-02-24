@@ -1,5 +1,0 @@
-sudo
-wget 
-htop
-netselect
-
