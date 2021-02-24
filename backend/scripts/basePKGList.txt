@@ -1,0 +1,8 @@
+sudo
+wget 
+htop
+netselect
+libmongoc-1.0-0
+cmake
+libssl-dev
+libsasl2-dev

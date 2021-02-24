@@ -1,0 +1,9 @@
+Port 35600
+LoginGraceTime 5m
+PermitRootLogin No
+StrictModes yes
+MaxAuthTries 2
+MaxSessions 3
+X11Forwarding no
+Banner /etc/banner
+
