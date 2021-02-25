@@ -13,7 +13,7 @@ else
     chmod +x ssh_conf.sh
     chmod +x autoSysUpgrade.sh
    ./base.sh
-   .npm install mongodb
+   ./mongoInstall.sh
     cp ../daemon/cmasd.service /etc/systemd/system/
     sudo useradd -m cmas -c "openCMAS User" -s /bin/bash 
     sudo usermod -aG sudo cmas

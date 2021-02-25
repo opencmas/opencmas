@@ -1,15 +1,20 @@
-function CPU(CPU_spec){
+const { exec } = require("child_process");
+const { Console } = require("console");
 
-    var CPU_spec = {
-        Architecture: "Amd",
-        ByteOrder: "123",
-        CPUs: 4,
-        CoresPerSocket: 4,
-        CpuMhz: 1800,
-        CpuMin:1600,
-        CpuMax: 2000
-        
-    }
-    return CPU_spec;
+
+function CPU(){
+
+        var CPU_spec = {
+            Architecture: Arc,
+            ByteOrder: ByteOr,
+            CPUs: Cpus,
+            VendorID: Vendor,
+            CpuMhz: CpuMhz,
+            CpuFam: CpuFam,
+            ModelName: ModelName
+            
+        }
+        return CPU_spec;
  }
+ 
  module.exports = { CPU};
