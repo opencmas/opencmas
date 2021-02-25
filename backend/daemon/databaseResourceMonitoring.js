@@ -1,7 +1,11 @@
-const mongo = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/";
-const cpu_col = require("./CPU.js");
-const childP = require('child_process');
+
+function CPUmon(){
+
+  const mongo = require('mongodb').MongoClient;
+  const url = "mongodb://localhost:27017/";
+  const cpu_col = require("./HW.js");
+  const childP = require('child_process');
+  
 
 const CPUinfo = childP.execSync("lscpu > temp/cpu.txt");
 
@@ -38,6 +42,7 @@ con(Arc, ByteOr, Cpus, Vendor, CpuMhz, CpuFam, ModelName);
 
   function con(){
 
+    
       this.Arc = Arc;
       this.ByteOr = ByteOr;
       this.Cpus = Cpus;
@@ -46,20 +51,17 @@ con(Arc, ByteOr, Cpus, Vendor, CpuMhz, CpuFam, ModelName);
       this.CpuFam = CpuFam;
       this.ModelName = ModelName;
 
-      mongo.connect(url, function(err, db){
+      mongo.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true }, function(err, db){
         if (err) throw err;
-        var dbo = db.db("cmastest3");
+        var dbo = db.db("cmastest4");
     
         var CPU_spec = cpu_col.CPU(this.Arc, this.ByteOr, this.Cpus);
     
         dbo.collection("CPU").insertOne(CPU_spec, function(err, res) {
          db.close();
           
-        });
-        
+        });        
       });
   }
-
-
-
-
+}
+module.exports = {CPUmon};
