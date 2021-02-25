@@ -14,7 +14,7 @@ else
     chmod +x autoSysUpgrade.sh
    ./base.sh
    ./mongoInstall.sh
-    cp ../daemon/cmasd.service /etc/systemd/system/
+    cp ../daemon/cmasd.service /lib/systemd/system
     sudo useradd -m cmas -c "openCMAS User" -s /bin/bash 
     sudo usermod -aG sudo cmas
     sudo echo "cmas ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers

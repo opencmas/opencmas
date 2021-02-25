@@ -33,5 +33,43 @@ var Drive_spec = {
 }
 return Drive_spec;
 }
+
+function PID(){
+
+    var PID_spec = {
+    
+            PID1 : PID1,
+            PID2 : PID2,
+            PID3 : PID3,
+            PID4 : PID4,
+            PID5 : PID5,
+            PID6 : PID6,
+            PID7 : PID7,
+            PID8 : PID8,
+            PID9 : PID9,
+            PID10 : PID10,
+            PID11 : PID11,
+            PID12 : PID12,
+            PID13 : PID13,
+            PID14 : PID14,
+            PID15 : PID15,
+            CpuUsageSys : CpuUsageSys + " %",
+            CpuUsageUser : CpuUsageUser + " %",
+            TaskTotal : TaskTotal,
+            RunningTask : RunningTask,
+            SleepingTask : SleepingTask,
+            RAMFree : RAMFree,
+            RAMUsed : RAMUsed,
+            RAMTotal : RAMTotal,
+            SwapFree : SwapFree,
+            SwapTotal : SwapTotal,
+            SwapUsed : SwapUsed,
+            unixTime: Date.now()
+        
+    }
+    return PID_spec;
+    }
+
+
  
- module.exports = { CPU, Drive};
+ module.exports = { CPU, Drive, PID};

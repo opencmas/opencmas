@@ -6,7 +6,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/home/stefan/opencmas4/opencmas/backend/daemon/main.c
+ExecStart=/usr/bin/node /home/stefan/opencmas5/opencmas/backend/daemon/main.js
 
 [Install]
 WantedBy=multi-user.target1
