@@ -70,6 +70,17 @@ function PID(){
     return PID_spec;
     }
 
+    function Network(){
 
+        var Network_spec = {
+        
+                TXTotal: TXTotal,
+                RXTotal: RXTotal        
+            
+        }
+        return Network_spec;
+        }
+    
+    
  
- module.exports = { CPU, Drive, PID};
+ module.exports = { CPU, Drive, PID, Network };

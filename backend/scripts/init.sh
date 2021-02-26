@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 id=$(id -G | egrep -i '^([0])$')
 if [ -z "$id" ]
 then

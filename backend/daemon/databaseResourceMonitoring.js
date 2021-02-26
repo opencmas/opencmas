@@ -53,7 +53,7 @@ con(Arc, ByteOr, Cpus, Vendor, CpuMhz, CpuFam, ModelName);
 
       mongo.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true }, function(err, db){
         if (err) throw err;
-        var dbo = db.db("cmastest5");
+        var dbo = db.db("cmastest11");
     
         var CPU_spec = cpu_col.CPU(this.Arc, this.ByteOr, this.Cpus);
     
