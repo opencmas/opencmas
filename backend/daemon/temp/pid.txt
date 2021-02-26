@@ -1,42 +1,42 @@
-top - 14:57:18 up 10:20,  0 users,  load average: 0.15, 0.05, 0.01
-Tasks: 103 total,   1 running, 102 sleeping,   0 stopped,   0 zombie
+top - 05:53:15 up  1:15,  0 users,  load average: 0.04, 0.07, 0.03
+Tasks: 102 total,   1 running, 101 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
-MiB Mem :    987.0 total,     71.2 free,    571.9 used,    343.9 buff/cache
-MiB Swap:    975.0 total,    637.9 free,    337.1 used.    284.2 avail Mem 
+MiB Mem :    987.0 total,     62.6 free,    590.9 used,    333.6 buff/cache
+MiB Swap:    975.0 total,    969.0 free,      6.0 used.    266.2 avail Mem 
 
   PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
-   10 root      20   0       0      0      0 I   6.7   0.0   0:27.46 rcu_sched
-29559 root      20   0    8264   4080   3140 S   6.7   0.4   0:31.38 htop
-    1 root      20   0  170488   5480   3912 S   0.0   0.5   0:01.72 systemd
+    1 root      20   0  104928   9000   6828 S   0.0   0.9   0:01.39 systemd
     2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd
     3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
     4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp
     6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0+
     8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu+
-    9 root      20   0       0      0      0 S   0.0   0.0   0:00.73 ksoftirqd+
+    9 root      20   0       0      0      0 S   0.0   0.0   0:00.08 ksoftirqd+
+   10 root      20   0       0      0      0 I   0.0   0.0   0:04.02 rcu_sched
    11 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_bh
-   12 root      rt   0       0      0      0 S   0.0   0.0   0:00.15 migration+
+   12 root      rt   0       0      0      0 S   0.0   0.0   0:00.01 migration+
    14 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
    15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
-   16 root      rt   0       0      0      0 S   0.0   0.0   0:00.29 migration+
-   17 root      20   0       0      0      0 S   0.0   0.0   0:00.43 ksoftirqd+
+   16 root      rt   0       0      0      0 S   0.0   0.0   0:00.15 migration+
+   17 root      20   0       0      0      0 S   0.0   0.0   0:00.07 ksoftirqd+
    19 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1+
    20 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs
    21 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
    22 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd
-   23 root      20   0       0      0      0 S   0.0   0.0   0:00.01 khungtaskd
-   24 root      20   0       0      0      0 S   0.0   0.0   0:00.07 oom_reaper
+   23 root      20   0       0      0      0 S   0.0   0.0   0:00.00 khungtaskd
+   24 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper
    25 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback
    26 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0
    27 root      25   5       0      0      0 S   0.0   0.0   0:00.00 ksmd
-   28 root      39  19       0      0      0 S   0.0   0.0   0:00.50 khugepaged
+   28 root      39  19       0      0      0 S   0.0   0.0   0:00.06 khugepaged
    29 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 crypto
    30 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kintegrit+
    31 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kblockd
    32 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 edac-poll+
    33 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 devfreq_wq
    34 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 watchdogd
-   35 root      20   0       0      0      0 S   0.0   0.0   0:27.58 kswapd0
+   35 root      20   0       0      0      0 I   0.0   0.0   0:00.82 kworker/1+
+   36 root      20   0       0      0      0 S   0.0   0.0   0:00.13 kswapd0
    54 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kthrotld
    55 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/24-pc+
    56 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/25-pc+
@@ -47,64 +47,63 @@ MiB Swap:    975.0 total,    637.9 free,    337.1 used.    284.2 avail Mem
    61 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/30-pc+
    62 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ipv6_addr+
    72 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kstrp
-  126 root       0 -20       0      0      0 I   0.0   0.0   0:01.56 kworker/0+
-  139 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ata_sff
-  147 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_0
-  148 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_0
-  149 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_1
-  150 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_1
-  151 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_2
-  152 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_2
-  153 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_3
-  154 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_3
-  155 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_4
-  156 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_4
-  157 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_5
-  158 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_5
-  177 root       0 -20       0      0      0 I   0.0   0.0   0:03.18 kworker/1+
-  207 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/u+
-  209 root      20   0       0      0      0 S   0.0   0.0   0:01.33 jbd2/vda1+
-  210 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ext4-rsv-+
-  221 root      20   0       0      0      0 S   0.0   0.0   0:00.00 hwrng
-  239 root      20   0   40380   4160   3768 S   0.0   0.4   0:00.67 systemd-j+
-  263 root      20   0   22728    600    424 S   0.0   0.1   0:00.54 systemd-u+
-  272 systemd+  20   0   93084    256    220 S   0.0   0.0   0:00.14 systemd-t+
-  297 root      20   0   19648   2904   2524 S   0.0   0.3   0:00.23 systemd-l+
-  298 root      20   0    8476    512    440 S   0.0   0.1   0:00.04 cron
-  299 root      20   0  225824    248     76 S   0.0   0.0   0:00.08 rsyslogd
-  300 message+  20   0    9000    960    704 S   0.0   0.1   0:00.19 dbus-daem+
-  320 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ttm_swap
-  380 mongodb   20   0 1551692  22284   9648 S   0.0   2.2   2:13.90 mongod
-  382 root      20   0    5612      0      0 S   0.0   0.0   0:00.00 agetty
-  386 root      20   0    9488   1788   1552 S   0.0   0.2   0:00.05 dhclient
-  393 root      20   0   15852   1416   1276 S   0.0   0.1   0:00.01 sshd
-  474 root      20   0   21156   1120    948 S   0.0   0.1   0:00.04 systemd
-  475 root      20   0  170352      4      0 S   0.0   0.0   0:00.00 (sd-pam)
-  538 root      20   0    2388      0      0 S   0.0   0.0   0:00.00 sh
-  546 root      20   0 1027968  47904  18000 S   0.0   4.7   1:06.93 node
-  786 root      20   0  855016  17588  10480 S   0.0   1.7   0:04.18 node
-  804 root      20   0 2340940 110712  21852 S   0.0  11.0   7:11.20 node
- 1167 root      20   0  629208  79976  12740 S   0.0   7.9   0:18.13 node
- 1168 root      20   0  771688 204408   9948 S   0.0  20.2   5:29.83 node
- 1184 root      20   0  615124  18992   9084 S   0.0   1.9   0:09.81 node
- 1674 root      20   0    6992   3020   2660 S   0.0   0.3   0:00.10 bash
- 3682 root      20   0    6992      4      4 S   0.0   0.0   0:00.00 bash
- 3687 root      20   0 1161980      0      0 S   0.0   0.0   0:01.32 mongo
- 5033 root      20   0    5260    688    624 S   0.0   0.1   0:00.00 sleep
- 5063 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/u+
- 5070 root      20   0    6992   3748   3220 S   0.0   0.4   0:00.00 bash
- 5266 root      20   0  911080  59856  27908 S   0.0   5.9   0:01.56 node
- 6681 root      20   0    2388    752    684 S   0.0   0.1   0:00.00 sh
- 6682 root      20   0   10960   3472   3112 R   0.0   0.3   0:00.00 top
- 8271 root      20   0    6992   2068   1776 S   0.0   0.2   0:00.16 bash
-10838 root      20   0   17088   7804   6616 S   0.0   0.8   0:02.19 sshd
-11036 root      20   0    6728   2844   2608 S   0.0   0.3   0:00.00 bash
-11040 root      20   0    7172   3640   2808 S   0.0   0.4   0:00.02 bash
-16941 root      20   0 1650484  64120  26788 S   0.0   6.3   0:01.03 node
-29486 root      20   0    6992   3236   2808 S   0.0   0.3   0:00.00 bash
-29677 root      20   0       0      0      0 I   0.0   0.0   0:00.12 kworker/u+
-30518 root      20   0       0      0      0 I   0.0   0.0   0:00.13 kworker/0+
-30520 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/0+
-30581 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/1+
-32225 root      20   0       0      0      0 I   0.0   0.0   0:00.14 kworker/u+
-32608 root      20   0       0      0      0 I   0.0   0.0   0:13.56 kworker/1+
+  110 root       0 -20       0      0      0 I   0.0   0.0   0:00.09 kworker/0+
+  112 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ata_sff
+  113 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_0
+  121 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_0
+  123 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_1
+  124 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_1
+  126 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_2
+  127 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_2
+  128 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_3
+  129 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_3
+  130 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_4
+  131 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_4
+  132 root      20   0       0      0      0 S   0.0   0.0   0:00.00 scsi_eh_5
+  133 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 scsi_tmf_5
+  177 root       0 -20       0      0      0 I   0.0   0.0   0:00.32 kworker/1+
+  208 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/u+
+  210 root      20   0       0      0      0 S   0.0   0.0   0:00.14 jbd2/vda1+
+  211 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ext4-rsv-+
+  222 root      20   0       0      0      0 S   0.0   0.0   0:00.00 hwrng
+  243 root      20   0   32192   7332   6228 S   0.0   0.7   0:00.19 systemd-j+
+  267 root      20   0   22720   5112   3468 S   0.0   0.5   0:00.53 systemd-u+
+  273 systemd+  20   0   93084   5552   4708 S   0.0   0.5   0:00.05 systemd-t+
+  299 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ttm_swap
+  353 root      20   0  225824   5324   2812 S   0.0   0.5   0:00.01 rsyslogd
+  354 root      20   0    8476   2388   2176 S   0.0   0.2   0:00.00 cron
+  355 message+  20   0    9000   3908   3372 S   0.0   0.4   0:00.10 dbus-daem+
+  356 root      20   0   19656   6300   5376 S   0.0   0.6   0:00.09 systemd-l+
+  384 root      20   0    9488   5336   4108 S   0.0   0.5   0:00.00 dhclient
+  403 mongodb   20   0 1550672 130748  40044 S   0.0  12.9   0:15.33 mongod
+  404 root      20   0    5612   1352   1236 S   0.0   0.1   0:00.00 agetty
+  409 root      20   0   15852   6152   5572 S   0.0   0.6   0:00.01 sshd
+  480 root      20   0   21156   7396   6184 S   0.0   0.7   0:00.02 systemd
+  481 root      20   0  104708   1784      0 S   0.0   0.2   0:00.00 (sd-pam)
+  548 root      20   0    2388    588    588 S   0.0   0.1   0:00.00 sh
+  561 root      20   0 1035804  47568  13204 S   0.0   4.7   0:09.74 node
+ 1641 root      20   0   17500   8080   6548 S   0.0   0.8   0:02.06 sshd
+ 1647 root      20   0    6728   3024   2792 S   0.0   0.3   0:00.00 bash
+ 1651 root      20   0    7172   3648   2820 S   0.0   0.4   0:00.03 bash
+ 1708 root      20   0  853156  23756  12412 S   0.0   2.4   0:00.75 node
+ 1726 root      20   0 1127832  72876  13432 S   0.0   7.2   0:31.33 node
+ 1855 root      20   0  621784 101436  12464 S   0.0  10.0   0:02.66 node
+ 1861 root      20   0  694156 153780  12424 S   0.0  15.2   0:08.57 node
+ 1873 root      20   0  613332  54540  12372 S   0.0   5.4   0:03.06 node
+ 1914 root      20   0    6992   3836   3248 S   0.0   0.4   0:00.04 bash
+ 5945 root      20   0       0      0      0 I   0.0   0.0   0:00.08 kworker/u+
+ 6619 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/1+
+ 7617 root      20   0    6992   3780   3220 S   0.0   0.4   0:00.02 bash
+ 8017 root      20   0    6992   3896   3308 S   0.0   0.4   0:00.03 bash
+ 8422 root      20   0       0      0      0 I   0.0   0.0   0:00.03 kworker/u+
+ 9028 root      20   0       0      0      0 I   0.0   0.0   0:01.09 kworker/0+
+ 9029 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/0+
+11184 root      20   0    6992   3716   3176 S   0.0   0.4   0:00.00 bash
+15851 root      20   0    6992   3804   3252 S   0.0   0.4   0:00.00 bash
+15890 root      20   0       0      0      0 I   0.0   0.0   0:00.01 kworker/u+
+16030 root      20   0    5260    684    624 S   0.0   0.1   0:00.00 sleep
+16163 root      20   0    6992   3904   3300 S   0.0   0.4   0:00.00 bash
+16176 root      20   0    6644   3120   2892 S   0.0   0.3   0:00.00 bash
+16177 root      20   0  911644  60768  27836 S   0.0   6.0   0:02.31 node
+19862 root      20   0    2388    764    696 S   0.0   0.1   0:00.00 sh
+19863 root      20   0   10960   3492   3132 R   0.0   0.3   0:00.00 top

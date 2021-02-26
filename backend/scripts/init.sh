@@ -11,10 +11,10 @@ else
     chmod +x base.sh
     chmod +x mongoInstall.sh
     chmod +x ssh_conf.sh
-    chmod +x autoSysUpgrade.sh
+    chmod +x upgrade/autoSysUpgrade.sh
    ./base.sh
    ./mongoInstall.sh
-    cp ../daemon/cmasd.service /lib/systemd/system
+    cp ../daemon/cmasd.service /etc/systemd/system/ -f
     sudo useradd -m cmas -c "openCMAS User" -s /bin/bash 
     sudo usermod -aG sudo cmas
     sudo echo "cmas ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
