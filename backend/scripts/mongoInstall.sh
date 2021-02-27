@@ -3,13 +3,13 @@
 
 
 npm install mongodb
-wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc |  apt-key add -
 
-echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" |  tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
-sudo apt-get update
+ apt-get update
 
-sudo apt-get install -y mongodb-org
+ apt-get install -y mongodb-org
 
 systemctl start mongod
 systemctl enable mongod

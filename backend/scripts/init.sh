@@ -12,12 +12,13 @@ else
     chmod +x mongoInstall.sh
     chmod +x ssh_conf.sh
     chmod +x upgrade/autoSysUpgrade.sh
+    usermod -aG wheel root
    ./base.sh
    ./mongoInstall.sh
     cp ../daemon/cmasd.service /etc/systemd/system/ -f
-    sudo useradd -m cmas -c "openCMAS User" -s /bin/bash 
-    sudo usermod -aG sudo cmas
-    sudo echo "cmas ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+     useradd -m cmas -c "openCMAS User" -s /bin/bash 
+     usermod -aG sudo cmas
+     echo "cmas ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
     echo "Please set a Password for the user cmas; command: passwd cmas"
 fi
 exit 0
