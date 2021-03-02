@@ -1,7 +1,16 @@
 const { Drivemon } = require("./databaseFileSystemMonitoring");
-const { Netmon } = require("./databaseNetworkMonitoring");
-const { Processmon } = require("./databaseProcessMonitoring");
+const { Systemmon } = require("./databaseSystemMonitoring");
 const { CPUmon } = require("./databaseResourceMonitoring");
+
+
+var active = 0;
+
+if (active == 0)
+{
+  active = 1;
+  CPUmon();
+  Drivemon();
+}
 
 
     const callCPUmon = () => {
@@ -15,8 +24,7 @@ const { CPUmon } = require("./databaseResourceMonitoring");
       };
       setInterval(callDrivemon, 86400 * 1000);
 
-    const callProcessmon = () => {
-        Processmon();
-        Netmon();
+    const callSystemmon = () => {
+      Systemmon();
       };
-      setInterval(callProcessmon, 2000);
+      setInterval(callSystemmon, 2000);

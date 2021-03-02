@@ -12,7 +12,7 @@ function CPU(){
         CpuMhz: CpuMhz,
         CpuFam: CpuFam,
         ModelName: ModelName,
-        unixTime: Date.now()
+        UnixTime: Date.now()
         
     }
 return CPU_spec;
@@ -28,15 +28,15 @@ var Drive_spec = {
         UsedPer : UsedPer,
         Free : Free,
         Mounted : Mounted,
-        unixTime: Date.now()
+        UnixTime: Date.now()
     
 }
 return Drive_spec;
 }
 
-function PID(){
+function SYS(){
 
-    var PID_spec = {
+    var SYS_spec = {
     
             PID1 : PID1,
             PID2 : PID2,
@@ -53,8 +53,8 @@ function PID(){
             PID13 : PID13,
             PID14 : PID14,
             PID15 : PID15,
-            CpuUsageSys : CpuUsageSys + " %",
-            CpuUsageUser : CpuUsageUser + " %",
+            CpuUsageSys : CpuUsageSys,
+            CpuUsageUser : CpuUsageUser,
             TaskTotal : TaskTotal,
             RunningTask : RunningTask,
             SleepingTask : SleepingTask,
@@ -63,24 +63,15 @@ function PID(){
             RAMTotal : RAMTotal,
             SwapFree : SwapFree,
             SwapTotal : SwapTotal,
-            SwapUsed : SwapUsed,
-            unixTime: Date.now()
-        
+            SwapUsed : SwapUsed,   
+            RXTotal : RXTotal,
+            TXTotal : TXTotal,
+            InterfaceTotal : InterfaceTotal,
+            UnixTime: Date.now()
     }
-    return PID_spec;
+    return SYS_spec;
     }
 
-    function Network(){
-
-        var Network_spec = {
-        
-                TXTotal: TXTotal,
-                RXTotal: RXTotal        
-            
-        }
-        return Network_spec;
-        }
-    
     
  
- module.exports = { CPU, Drive, PID, Network };
+ module.exports = { CPU, Drive, SYS };

@@ -2,7 +2,7 @@
 function CPUmon(){
 
   const mongo = require('mongodb').MongoClient;
-  const url = "mongodb://localhost:27017/";
+  const url = "mongodb://localhost:40100/";
   const cpu_col = require("./HW.js");
   const childP = require('child_process');
   
@@ -53,7 +53,7 @@ con(Arc, ByteOr, Cpus, Vendor, CpuMhz, CpuFam, ModelName);
 
       mongo.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true }, function(err, db){
         if (err) throw err;
-        var dbo = db.db("cmastest12");
+        var dbo = db.db("cmas");
     
         var CPU_spec = cpu_col.CPU(this.Arc, this.ByteOr, this.Cpus);
     

@@ -11,9 +11,12 @@ echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" |  tee
 
  apt-get install -y mongodb-org
 
+
+
+cp /etc/mongod.conf /etc/mongod.conf.bak
+cp /opt/opencmas/backend/scripts/mongod.conf /etc/
 systemctl start mongod
 systemctl enable mongod
-
 #wget https://github.com/mongodb/mongo-c-driver/releases/download/1.17.4/mongo-c-driver-1.17.4.tar.gz
 #tar xzf mongo-c-driver-1.17.4.tar.gz
 #cd mongo-c-driver-1.17.4

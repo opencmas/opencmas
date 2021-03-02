@@ -1,12 +1,12 @@
-function Processmon(){
+function Systemmon(){
 
     const mongo = require('mongodb').MongoClient;
-    const url = "mongodb://localhost:27017/";
-    const pid_col = require("./HW.js");
+    const url = "mongodb://localhost:40100/";
+    const sys_col = require("./HW.js");
     const childP = require('child_process');
     
     const PIDInfo = childP.execSync("top -n 1 -b > temp/pid.txt");
-
+    const NetInfo = childP.execSync("cat /proc/net/dev > temp/net.txt");
 
   var CpuUsageSys = null;
   var CpuUsageUser = null;
@@ -19,9 +19,20 @@ function Processmon(){
   var SwapTotal = null;
   var SwapUsed= null;
   var SwapFree = null;
-
+  var RXTotal = null;
+  var TXTotal = null;
+  var InterfaceTotal = null;
+  
   var PID1, PID2, PID3, PID4, PID5, PID6, PID7, PID8, PID9, PID10, PID11, PID12, PID13, PID14, PID15 = null;
  
+  const InterfaceTotaldata = childP.execSync("cat temp/net.txt | sed -n -e 3p  | awk '{print $1}'");
+  InterfaceTotal = InterfaceTotaldata.toString().replace(/(\r\n|\n|\r)/gm, "");  
+
+  const TXTotaldata = childP.execSync("cat temp/net.txt | sed -n -e 3p  | awk '{print $10}'");
+  TXTotal = TXTotaldata.toString().replace(/(\r\n|\n|\r)/gm, "");
+
+  const RXTotaldata = childP.execSync("cat temp/net.txt | sed -n -e 3p  | awk '{print $2}'");
+  RXTotal = RXTotaldata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
   const CpuUsageSysdata = childP.execSync("cat temp/pid.txt | grep %Cpu | awk '{print $4}'");
   CpuUsageSys = CpuUsageSysdata.toString().replace(/(\r\n|\n|\r)/gm, "");
@@ -104,7 +115,8 @@ function Processmon(){
   PID15 = PID15data.toString().replace(/(\r\n|\n|\r)/gm, "");
 
 
-  con(PID1, PID2, PID3, PID4 ,PID5, PID6, PID7, PID8, PID9, PID10, PID11, PID12, PID13, PID14, PID15, CpuUsageSys, CpuUsageUser, TaskTotal, RunningTask, SleepingTask, RAMFree, RAMUsed, RAMTotal, SwapTotal, SwapFree, SwapUsed);
+  con(PID1, PID2, PID3, PID4 ,PID5, PID6, PID7, PID8, PID9, PID10, PID11, PID12, PID13, PID14, PID15, CpuUsageSys, CpuUsageUser, TaskTotal, RunningTask, SleepingTask, RAMFree, RAMUsed, RAMTotal, SwapTotal, SwapFree, SwapUsed, InterfaceTotal, RXTotal, TXTotal);
+
   
     function con(){
   
@@ -135,20 +147,23 @@ function Processmon(){
          this.SwapFree = SwapFree;
          this.SwapTotal = SwapTotal;
          this.SwapUsed = SwapUsed;
-       
-         
-    
+         this.RXTotal = RXTotal;
+         this.TXTotal = TXTotal;
+         this.InterfaceTotal = InterfaceTotal;
+
+      
         mongo.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true }, function(err, db){
           if (err) throw err;
-          var dbo = db.db("cmastest12");
+          var dbo = db.db("cmas");
       
-          var Pid_spec = pid_col.PID();
+          var Sys_spec = sys_col.SYS();
       
-          dbo.collection("PID").insertOne(Pid_spec, function(err, res) {
+          dbo.collection("SYS").insertOne(Sys_spec, function(err, res) {
            db.close();
             
           });        
         });
     }
+    
   }
-  module.exports = {Processmon};
+  module.exports = {Systemmon};

@@ -1,7 +1,7 @@
 function Drivemon(){
 
     const mongo = require('mongodb').MongoClient;
-    const url = "mongodb://localhost:27017/";
+    const url = "mongodb://localhost:40100/";
     const drive_col = require("./HW.js");
     const childP = require('child_process');
     
@@ -47,7 +47,7 @@ function Drivemon(){
     
         mongo.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true }, function(err, db){
           if (err) throw err;
-          var dbo = db.db("cmastest12");
+          var dbo = db.db("cmas");
       
           var Drive_spec = drive_col.Drive();
       
