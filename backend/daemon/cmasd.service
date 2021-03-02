@@ -4,8 +4,8 @@ Description=OpenCMAS service
 [Service]
 User=root
 RemainAfterExit=yes
-WorkingDirectory=/bin/opencmas
-ExecStart=/bin/bash /bin/opencmas/backend/daemon/main.sh
+WorkingDirectory=/opt/opencmas/backend/daemon
+ExecStart=/bin/bash /opt/opencmas/backend/daemon/main.sh
 
 [Install]
 WantedBy=multi-user.target
