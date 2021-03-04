@@ -17,4 +17,4 @@ gnupg
 nodejs
 npm
 iftop
-firewalld
+ufw

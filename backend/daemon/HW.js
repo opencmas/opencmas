@@ -12,7 +12,7 @@ function CPU(){
         CpuMhz: CpuMhz,
         CpuFam: CpuFam,
         ModelName: ModelName,
-        UnixTime: Date.now()
+        UnixTime: Date.now().toString()
         
     }
 return CPU_spec;
@@ -28,7 +28,7 @@ var Drive_spec = {
         UsedPer : UsedPer,
         Free : Free,
         Mounted : Mounted,
-        UnixTime: Date.now()
+        UnixTime: Date.now().toString()
     
 }
 return Drive_spec;
@@ -67,7 +67,7 @@ function SYS(){
             RXTotal : RXTotal,
             TXTotal : TXTotal,
             InterfaceTotal : InterfaceTotal,
-            UnixTime: Date.now()
+            UnixTime: Date.now().toString()
     }
     return SYS_spec;
     }
