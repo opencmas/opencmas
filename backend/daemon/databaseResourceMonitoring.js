@@ -3,11 +3,11 @@ function CPUmon(){
 
   const mongo = require('mongodb').MongoClient;
   const url = "mongodb://localhost:40100/";
-  const cpu_col = require("./HW.js");
+  const cpu_col = require("/opt/opencmas/backend/daemon/HW.js");
   const childP = require('child_process');
   
 
-const CPUinfo = childP.execSync("lscpu > temp/cpu.txt");
+const CPUinfo = childP.execSync("lscpu > /opt/opencmas/backend/daemon/temp/cpu.txt");
 
 var Arc = null;
 var ByteOr = null;
@@ -16,25 +16,25 @@ var Vendor = null;
 var CpuMhz = null;
 var ModelName = null;
 
-const Arcdata = childP.execSync("cat temp/cpu.txt | grep Arch | awk '{print $2}'");
+const Arcdata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep Arch | awk '{print $2}'");
 Arc = Arcdata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
-const ByteOrdata = childP.execSync("cat temp/cpu.txt | grep 'Byte Order' | awk '{print $3$4}'");
+const ByteOrdata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep 'Byte Order' | awk '{print $3$4}'");
 ByteOr = ByteOrdata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
-const Cpusdata = childP.execSync("cat temp/cpu.txt | grep 'CPU(s)' | awk '{print $2}'");
+const Cpusdata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep 'CPU(s)' | awk '{print $2}'");
 Cpus = Cpusdata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
-const Vendordata = childP.execSync("cat temp/cpu.txt | grep 'Vendor ID' | awk '{print $3}'");
+const Vendordata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep 'Vendor ID' | awk '{print $3}'");
 Vendor = Vendordata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
-const CpuMhzdata = childP.execSync("cat temp/cpu.txt | grep 'CPU MHz' | awk '{print $3}'");
+const CpuMhzdata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep 'CPU MHz' | awk '{print $3}'");
 CpuMhz = CpuMhzdata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
-const CpuFamdata = childP.execSync("cat temp/cpu.txt | grep 'CPU fam' | awk '{print $3}'");
+const CpuFamdata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep 'CPU fam' | awk '{print $3}'");
 CpuFam = CpuFamdata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
-const ModelNamedata = childP.execSync("cat temp/cpu.txt | grep 'Model name' | awk '{print $3$5$5$6$7$8$9$10}'");
+const ModelNamedata = childP.execSync("cat /opt/opencmas/backend/daemon/temp/cpu.txt | grep 'Model name' | awk '{print $3$5$5$6$7$8$9$10}'");
 ModelName = ModelNamedata.toString().replace(/(\r\n|\n|\r)/gm, "");
 
 

@@ -33,7 +33,7 @@ const myToken = jwt.sign(payload, 'secret', {
 
 
 //const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
-const mongooseString = "mongodb://192.168.1.54:27017/cmastest11?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+const mongooseString = "mongodb://localhost:40100/cmas?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
 
 mongoose.connect(mongooseString, {useNewUrlParser: true, useUnifiedTopology: true});
 
