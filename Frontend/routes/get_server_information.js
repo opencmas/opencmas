@@ -4,11 +4,32 @@ const Server_information = require("../models/server_information");
 const router = express.Router();
 
 router.route("/").get(function (req, res) {
-    Server_information.find({}, function (err, result) {
+    //Server_information.find({}).sort({_id:-1}).limit(1);
+    //db.inventory.find( { qty: { $gt: 20 } } )
+
+    //var w = Server_information.findOne({ unixTime: {$gt : 1614710973}});
+    //Server_information.find({unixTime : {$gt : 1614710973}}, function (err, result){
+
+
+    var epoch = Math.floor(new Date()) - 1000;     
+
+    Server_information.findOne({unixTime : {$gt : epoch}}, function (err, result) {
         if (err) {
             res.send(err);
+            //console.log(Math.floor(+new Date() / 1000));
         } else {
-            res.send(result);
+            if(result == null){
+                
+                res.send(global.lastEntry);
+                
+            }       
+            else{
+                global.lastEntry = result;
+                console.log(global.lastEntry);
+                console.log(Math.floor(new Date()));
+                //console.log("w");
+                 res.send(result);
+            }
         }
     });
 });

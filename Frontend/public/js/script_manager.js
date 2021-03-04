@@ -5,8 +5,11 @@ const scripts = [];
 function get_scripts() {
 
     var request = new XMLHttpRequest()
+    console.log(server + '/get_scripts');
+    request.open('GET', server + '/get_scripts', true)
+   
 
-    request.open('GET', 'http://localhost:3000/get_scripts', true)
+
     request.onload = function () {
         // Begin accessing JSON data here
         var data = JSON.parse(this.response)
@@ -110,9 +113,9 @@ function save_button(){
             console.log("sending")
             var data = new FormData();
             data.append("script_name", scriptname.value);
-            data.append("script_description", scriptdescription.value,);
-            data.append("script_file", script_file);
-            data.append("icon_path", script_icon);
+            data.append("script_description", scriptdescription.value);
+            data.append("script_file", script_file, "/C:/Users/Philipp Mair/Desktop/DEMO/test1.sh");
+            data.append("icon_path", script_icon, "/C:/Users/Philipp Mair/Desktop/DEMO/bwl1.PNG" );
              
             var xhr = new XMLHttpRequest();
                        

@@ -12,6 +12,8 @@ var id = new mongoose.Types.ObjectId();
  
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    console.log("1");
+    console.log(__dirname);
     if (file.mimetype === 'application/x-sh') 
       cb(null, path.join(__dirname, '../uploads/scripts'))
     else if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png')
@@ -19,6 +21,7 @@ var storage = multer.diskStorage({
       
   },
   filename: function (req, file, cb) {
+    console.log("2");
     if (file.mimetype === 'application/x-sh') {
       scriptName = id + "_script.sh";
       cb(null, scriptName)

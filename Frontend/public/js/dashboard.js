@@ -180,39 +180,57 @@ function loadChart_for_Drive_Network (server_information_history_data) {
 
 function get_server_information() {
 
-    var request = new XMLHttpRequest()
-
-    request.open('GET', 'http://localhost:3000/get_server_information', true)
-    request.onload = function () {
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response)
-
-        if (request.status >= 200 && request.status < 400) {
-
-            var cpu = data[0].cpu;
-            var ram = data[0].ram;
-            var drive = data[0].drive;
-            var network = data[0].network;
+    try
+    {
+        var request = new XMLHttpRequest()
+        //console.log("LOL");
+        //console.log(server + '/get_server_information');
+        request.open('GET', server + '/get_server_information', true)
+        request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response)
             
+            if (request.status >= 200 && request.status < 400) {
 
-            document.getElementById("display_cpu").innerHTML = cpu + "%";
-            document.getElementById("display_ram").innerHTML = ram + "%";
-            document.getElementById("display_drive").innerHTML = drive + "%";
-            document.getElementById("display_network").innerHTML = network + "%";
+                console.log(data.unixTime);
+                var ramFree = data.RAMFree;
+                var ramUsed = data.RAMUsed;
+                var ramTotal = data.RAMTotal;
 
-            document.getElementById("progess_cpu").style = "width:" + cpu + "%";
-            document.getElementById("progess_ram").style = "width:" + ram + "%";
-            document.getElementById("progess_drive").style = "width:" + drive + "%";
-            document.getElementById("progess_network").style = "width:" + network + "%";
+                var ram = Math.round((100 / ramTotal * ramUsed));
 
+                console.log(ram);
 
-        } else {
-            console.log('error')
+                document.getElementById("display_ram").innerHTML = ram + "%";
+                document.getElementById("progess_ram").style = "width:" + ram + "%";
+                
+                /*
+                var cpu = data[0].cpu;
+                var ram = data[0].ram;
+                var drive = data[0].drive;
+                var network = data[0].network;
+                
+
+                document.getElementById("display_cpu").innerHTML = cpu + "%";
+                document.getElementById("display_ram").innerHTML = ram + "%";
+                document.getElementById("display_drive").innerHTML = drive + "%";
+                document.getElementById("display_network").innerHTML = network + "%";
+
+                document.getElementById("progess_cpu").style = "width:" + cpu + "%";
+                document.getElementById("progess_ram").style = "width:" + ram + "%";
+                document.getElementById("progess_drive").style = "width:" + drive + "%";
+                document.getElementById("progess_network").style = "width:" + network + "%";
+                */
+
+            } else {
+                console.log('error')
+            }
         }
+
+        request.send()
+
     }
-
-    request.send()
-
+    catch{}
 
     setTimeout(get_server_information, 1000);
 }

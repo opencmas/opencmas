@@ -89,7 +89,7 @@ router.post('/', (req, res, next) => {
                  
                  
 
-                  res.cookie('auth-cookie', myToken, { maxAge: 60000, domain: '192.168.1.43', sameSite: 'lax'});
+                  res.cookie('auth-cookie', myToken, { maxAge: 60000, domain: process.env.IP, sameSite: 'lax'});
                   res.end('END');
                 //return res.status(200).json({authentication: "Successfully"});
 
@@ -99,8 +99,8 @@ router.post('/', (req, res, next) => {
                 console.error('authentication failed');                         //Wrong Username/Password
                 return res.send({authentication: "failed"});
             }).connect({
-            host: '192.168.1.5',                                //ServerIP Address
-            port: 16500,
+            host: process.env.IP,                                //ServerIP Address
+            port: process.env.SSH_PORT,
             username: usernameDecrypted,
             password: passwordDecrypted
         });   

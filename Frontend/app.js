@@ -32,7 +32,8 @@ const myToken = jwt.sign(payload, 'secret', {
 });
 
 
-const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
+//const mongooseString = "mongodb+srv://opencmas:opencmas2020@opencmas.u51n3.mongodb.net/opencmas?retryWrites=true&w=majority";
+const mongooseString = "mongodb://192.168.1.54:27017/cmastest11?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
 
 mongoose.connect(mongooseString, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -95,7 +96,7 @@ app.post("/totp-validate", checkLogin, (req, res, next) => {
     console.log(token);
 
     if(token == true){
-        res.cookie('auth-cookie', myToken, { maxAge: 900000, domain: '192.168.1.43'});
+        res.cookie('auth-cookie', myToken, { maxAge: 900000, domain: process.env.IP});
         res.end('END');
     }
     else{
@@ -107,12 +108,12 @@ app.post("/totp-validate", checkLogin, (req, res, next) => {
 
 });
 
-app.use("/get_server_information", checkauth, get_server_information);
+app.use("/get_server_information", get_server_information);
 app.use("/get_server_information_history", checkauth, get_server_information_history);
 app.use("/get_static_information", get_static_information);
 app.use("/login", login);
-app.use("/get_scripts", checkauth, get_scripts);
-app.use("/post_script", checkauth, post_script);
+app.use("/get_scripts", get_scripts);
+app.use("/post_script", post_script);
 
 
 app.use((req, res, next) => {
