@@ -1,6 +1,3 @@
-const { exec } = require("child_process");
-const { Console } = require("console");
-
 
 function CPU(){
 
@@ -72,6 +69,17 @@ function SYS(){
     return SYS_spec;
     }
 
-    
+function KEY(){
+
+    var KEY_spec = {
+            
+        firstUse : CurrentDate,
+        publicKey: PuB          
+        
+    }
+    return KEY_spec;
+     }
+            
+
  
- module.exports = { CPU, Drive, SYS };
+ module.exports = { CPU, Drive, SYS , KEY};

@@ -1,6 +1,7 @@
 const { Drivemon } = require("./databaseFileSystemMonitoring");
 const { Systemmon } = require("./databaseSystemMonitoring");
 const { CPUmon } = require("./databaseResourceMonitoring");
+const { KEYgen } = require("./keys");
 
 
 var active = 0;
@@ -10,6 +11,8 @@ if (active == 0)
   active = 1;
   CPUmon();
   Drivemon();
+  KEYgen();
+  
 }
 
 
