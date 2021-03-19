@@ -34,8 +34,11 @@ const mongoose = require('mongoose');
     SwapFree: String,
     SwapTotal: String,
     SwapUsed: String,
-    unixTime: Number
+    RXTotal: String,
+    TXTotal: String,
+    InterfaceTotal: String,
+    UnixTime: String
   });
   
 
- module.exports = mongoose.model('server_information_model', server_information_schema, "PID");
+ module.exports = mongoose.model('server_information_model', server_information_schema, "SYS");

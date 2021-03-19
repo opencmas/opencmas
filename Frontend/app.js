@@ -82,8 +82,7 @@ app.post("/totp-validate-dev", (req, res, next) => {
 });
 
 app.post("/totp-validate", checkLogin, (req, res, next) => {
-    console.log(req.body);
-    console.log("TOTP");
+
     const token = Speakeasy.totp.verify({
         secret: process.env.SECRET,
         encoding: "base32",
@@ -91,9 +90,6 @@ app.post("/totp-validate", checkLogin, (req, res, next) => {
         window: 0
     })
 
-
-
-    console.log(token);
 
     if(token == true){
         res.cookie('auth-cookie', myToken, { maxAge: 900000, domain: process.env.IP});
@@ -109,7 +105,7 @@ app.post("/totp-validate", checkLogin, (req, res, next) => {
 });
 
 app.use("/get_server_information", get_server_information);
-app.use("/get_server_information_history", checkauth, get_server_information_history);
+app.use("/get_server_information_history", get_server_information_history);
 app.use("/get_static_information", get_static_information);
 app.use("/login", login);
 app.use("/get_scripts", get_scripts);

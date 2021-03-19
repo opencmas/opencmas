@@ -100,7 +100,7 @@ function submitToken(){
         console.log(this.response);
 
         if(this.response == 'END'){
-            window.location.replace("http://" + process.env.IP + ":3000/dashboard");
+            window.location.replace(server + "/dashboard");
         }
         else{        
             var data = JSON.parse(this.response);

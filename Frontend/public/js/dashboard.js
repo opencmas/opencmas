@@ -189,21 +189,171 @@ function get_server_information() {
         request.onload = function () {
             // Begin accessing JSON data here
             var data = JSON.parse(this.response)
+            //console.log(data);
             
             if (request.status >= 200 && request.status < 400) {
 
-                console.log(data.unixTime);
+                //console.log(data.unixTime);
+
+                //CPU
+                var bufferNumber = 0;
+                var buffercpuTitalCPUValue = 0;
+
+                var cpuUsageSys = parseFloat(data.CpuUsageSys);
+                var cpuUsageUser = parseFloat(data.CpuUsageUser);
+                //console.log(cpuUsageSys);
+                //console.log(cpuUsageUser);
+                
+                var cpuTotal = parseFloat(cpuUsageSys + cpuUsageUser);
+
+                if(cpuTotal == 0 && bufferNumber < 2){
+                    //console.log("4 mo 0")
+                    cpuTotal = buffercpuTitalCPUValue;
+                    bufferNumber++;
+                }
+                else{
+                    buffercpuTitalCPUValue = cpuTotal;
+                    bufferNumber == 0;
+                    //console.log("nix")
+                }
+               
+                console.log("total:" + cpuTotal);
+                if(isNaN(cpuTotal)){
+                    cpuTotal = 0;
+                    console.log("NAN")
+                }
+                   
+
+                document.getElementById("display_cpu").innerHTML = cpuTotal.toFixed(0) + "%";
+                document.getElementById("progess_cpu").style = "width:" + cpuTotal + "%";
+
+                //RAM
                 var ramFree = data.RAMFree;
                 var ramUsed = data.RAMUsed;
                 var ramTotal = data.RAMTotal;
 
                 var ram = Math.round((100 / ramTotal * ramUsed));
 
-                console.log(ram);
+                //console.log(ram);
 
                 document.getElementById("display_ram").innerHTML = ram + "%";
                 document.getElementById("progess_ram").style = "width:" + ram + "%";
                 
+
+                //Network
+
+                var txtTotal = data.TXTotal;
+                var rxtTotal = data.RXTotal;
+                //console.log(txtTotal);
+                //console.log(rxtTotal);
+                
+                txtTotal = ((txtTotal / 1024) / 1024).toFixed(2);
+                rxtTotal = ((rxtTotal / 1024) / 1024).toFixed(2);
+
+                document.getElementById("network_upload").innerHTML = "UP:" + rxtTotal + "mb";
+                document.getElementById("network_download").innerHTML = "Down:" + txtTotal + "mb";
+
+
+                //document.getElementById("display_drive").innerHTML = data;
+
+
+                //const regex = /(?<=\s|^)[\d\w.:+-]+(?=\s|$)/gm;
+
+                var processes = [14];
+                var process_list = document.getElementById("process_list");
+                //console.log("Moin1");
+                var i = 0;
+             
+                const regex = /(?<=\s|^)[\d\w.:+-]+(?=\s|$)/gm;
+
+
+                removeAllChildNodes(process_list);
+                while(i != 4)
+                {
+                    var str = ""
+
+                    if(i == 0)
+                        str = data.PID1;
+                    else if(i == 1)
+                        str = data.PID2;
+                    else if(i == 2)
+                        str = data.PID3;
+                    else if(i == 3)
+                        str = data.PID4;
+                    else if(i == 4)
+                        str = data.PID5;
+                    else if(i == 5)
+                        str = data.PID6;
+                    else if(i == 6)
+                        str = data.PID7;
+                    else if(i == 7)
+                        str = data.PID8;
+                    else if(i == 8)
+                        str = data.PID9;
+                    else if(i == 9)
+                        str = data.PID10;
+                    else if(i == 10)
+                        str = data.PID11;
+                    else if(i == 11)
+                        str = data.PID12;
+                    else if(i == 12)
+                        str = data.PID13;
+                    else if(i == 13)
+                        str = data.PID14;
+                    else if(i == 14)
+                        str = data.PID15;
+                    
+
+
+                    let m;
+                    var temp_list = [];
+                    while ((m = regex.exec(str)) !== null) {
+                        if (m.index === regex.lastIndex) {
+                            regex.lastIndex++;
+                        }
+                        
+                        m.forEach((match, groupIndex) => {
+                            temp_list.push(match);
+                            
+                        });
+
+                    }
+                
+                    var single_process = new processObject(temp_list[0], temp_list[1], temp_list[2],
+                        temp_list[3], temp_list[4], temp_list[5], temp_list[6],
+                        temp_list[7], temp_list[8], temp_list[9], temp_list[10], 
+                        temp_list[11]);
+
+
+                    var process = document.createElement("tr");
+
+                    var process_id = document.createElement("th");
+                    var process_user = document.createElement("th");
+                    var process_command = document.createElement("th");
+                    var process_cpu = document.createElement("th");
+                    var process_ram = document.createElement("th");
+
+
+                    process_id.innerHTML = single_process.pid;
+                    process_user.innerHTML = single_process.user;
+                    process_command.innerHTML = single_process.command;
+                    process_cpu.innerHTML = single_process.cpu;
+                    process_ram.innerHTML = single_process.mem;
+
+                    process.appendChild(process_id);
+                    process.appendChild(process_user);
+                    process.appendChild(process_command);
+                    process.appendChild(process_cpu);
+                    process.appendChild(process_ram);
+
+                   
+                      
+
+                    process_list.appendChild(process);
+                    i++;
+                }
+                i = 0;
+
                 /*
                 var cpu = data[0].cpu;
                 var ram = data[0].ram;
@@ -233,6 +383,12 @@ function get_server_information() {
     catch{}
 
     setTimeout(get_server_information, 1000);
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
   
 function date_cpu_ram_changed(){
@@ -297,7 +453,7 @@ function get_server_information_history() {
        console.log(date);
     }
  
-
+    console.log(date);
     var request = new XMLHttpRequest()
 	var server_information_history_data = [23];
     request.open('GET', server + '/get_server_information_history/' + date, true)
@@ -310,20 +466,21 @@ function get_server_information_history() {
             var i;
             for (i = 0; i < data.length; i++) {
 				
-                var date = data[i].date;
+               
                 var hourRaw = data[i].hour;
                 var cpu = data[i].cpu;
                 var ram = data[i].ram;
                 var drive = data[i].drive;
 				var network = data[i].network;
                 
-               // console.log(data);
+                //console.log(data);
 
-               var hour = hourRaw.match(/[0-9]{2}:[0-9]{2}/i);
+                var hour = hourRaw.match(/[0-9]{2}:[0-9]{2}/i);
 
-                console.log(hour);
+                //console.log(hour);
 				
 				server_information_history_data[i] = new server_information_history(hour, cpu, ram, drive, network);
+                console.log(server_information_history_data[i]);
 			
             }
 
@@ -458,6 +615,74 @@ class server_information_history {
     network() {
         return this.drive;
     }
+}
+
+class processObject{
+    constructor(pid, user, pr, ni, virt, res, shr, s, cpu, mem, time, command) {
+        this.pid = pid;
+        this.user = user;
+        this.pr = pr;
+        this.ni = ni;
+        this.virt = virt;
+        this.res = res;
+        this.shr = shr;
+        this.s = s;
+        this.cpu = cpu;
+        this.mem = mem;
+        this.time = time;
+        this.command = command;
+    }
+
+
+    pid() {
+        return this.pid;
+    }
+    
+    user() {
+        return this.user;
+    }
+
+    pr() {
+        return this.pr;
+    }
+
+    ni() {
+        return this.ni;
+    }
+
+    virt() {
+        return this.virt;
+    }
+
+    res() {
+        return this.res;
+    }
+
+    shr() {
+        return this.shr;
+    }
+
+    s() {
+        return this.s;
+    }
+
+    cpu() {
+        return this.cpu;
+    }
+
+    
+    mem() {
+        return this.mem;
+    }
+
+    time() {
+        return this.time;
+    }
+
+    command() {
+        return this.command;
+    }    
+
 }
 
 
